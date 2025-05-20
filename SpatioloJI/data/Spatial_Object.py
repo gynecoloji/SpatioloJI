@@ -13,7 +13,7 @@ from scipy import stats
 from anndata import AnnData
 import scanpy as sc
 
-class Spatioloji:
+class spatioloji:
     """
     A class for managing and analyzing spatial transcriptomics data across multiple fields of view (FOVs).
     
@@ -251,7 +251,7 @@ class Spatioloji:
         
 
 
-class Spatioloji_qc:
+class spatioloji_qc:
     """
     A class for handling spatial transcriptomics data analysis and quality control.
     """
