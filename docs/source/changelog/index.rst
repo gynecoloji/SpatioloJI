@@ -3,6 +3,15 @@ Changelog
 
 This file documents all notable changes to SpatioloJI throughout its release history beginning from Version 0.2.0.
 
+Version 0.2.1 (2025-05-21)
+--------------------------
+
+Fixed
+~~~~~~~~~~~~~~~
+* Reduce redundant function chaining
+
+
+
 Version 0.2.0 (2025-05-20)
 --------------------------
 
