@@ -29,7 +29,7 @@ The library consists of three main components:
 
 ```bash
 conda create -n SpatioloJI python=3.12 -y
-pip install SpatioloJI
+pip install spatioloji
 ```
 
 ## Tutorials
