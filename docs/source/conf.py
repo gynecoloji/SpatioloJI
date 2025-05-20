@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 try:
     from SpatioloJI import __version__ as version
 except ImportError:
-    version = '0.1.0'  # Default version if import fails
+    version = '0.2.1'  # Default version if import fails
 
 project = 'SpatioloJI'
 copyright = f'{date.today().year}, SpatioloJI Developers'

@@ -1,4 +1,4 @@
-import SpatioloJI.pl
-import SpatioloJI.tl
-import SpatioloJI.data
-import SpatioloJI.utils
+from . import pl
+from . import tl
+from . import data
+from . import utils
