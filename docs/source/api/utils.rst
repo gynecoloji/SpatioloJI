@@ -1,7 +1,7 @@
 Utilities (utils)
-==============
+==================
 
-.. automodule:: SpatioloJI.utils
+.. automodule:: spatioloji.utils
    :members:
    :undoc-members:
    :show-inheritance:

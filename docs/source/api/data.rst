@@ -1,15 +1,15 @@
 Data (data)
-==========
+=============
 
-.. automodule:: SpatioloJI.data
+.. automodule:: spatioloji.data
    :members:
    :undoc-members:
    :show-inheritance:
 
 Spatial Object
--------------
+----------------
 
-.. automodule:: SpatioloJI.data.Spatial_Object
+.. automodule:: spatioloji.data.Spatial_Object
    :members:
    :undoc-members:
    :show-inheritance:

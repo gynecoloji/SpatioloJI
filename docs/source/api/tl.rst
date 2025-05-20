@@ -1,15 +1,15 @@
 Tools (tl)
-========
+===========
 
-.. automodule:: SpatioloJI.tl
+.. automodule:: spatioloji.tl
    :members:
    :undoc-members:
    :show-inheritance:
 
 Spatial Functions
---------------
+-------------------
 
-.. automodule:: SpatioloJI.tl.Spatial_function
+.. automodule:: spatioloji.tl.Spatial_function
    :members:
    :undoc-members:
    :show-inheritance:
