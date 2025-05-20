@@ -1,0 +1,580 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Index &mdash; SpatioloJI 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=2d01f2b6" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=2d01f2b6" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SpatioloJI
+              <img src="_static/logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#dependencies">Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basic_concepts.html">SpatioloJI Object Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_concepts.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_concepts.html#core-components">Core Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_concepts.html#component-details">Component Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#adata-anndata-object">adata (AnnData Object)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#cell-meta-dataframe">cell_meta (DataFrame)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#polygons-dataframe">polygons (DataFrame)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#fov-positions-dataframe">fov_positions (DataFrame)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#images-dictionary">images (Dictionary)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_concepts.html#integration-and-relationships">Integration and Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_concepts.html#creating-a-spatioloji-object">Creating a SpatioloJI Object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#from-individual-components">From Individual Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#from-files">From Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#from-pickle">From Pickle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_concepts.html#key-methods">Key Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#data-access">Data Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#custom-data">Custom Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_concepts.html#summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">CosMx</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/index.html#basic-tutorials">Basic Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/QC_filtering.html">Quality Control and Filtering for Raw Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/QC_filtering.html#Prepare-original-data">Prepare original data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/QC_filtering.html#Instantiation-of-Spatioloji_qc-object">Instantiation of Spatioloji_qc object</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/Scanpy_SpatioloJI.html">Integrate Scanpy into Spatiology Workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/Scanpy_SpatioloJI.html#Run-basic-workflow-of-Scanpy">Run basic workflow of Scanpy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/Scanpy_SpatioloJI.html#Imputation">Imputation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/Scanpy_SpatioloJI.html#Instantiate-SpatioloJI-object">Instantiate SpatioloJI object</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/Basic_Visualization.html">Basic Visualization for Polygons or Dots in Spatial Images/ Stitiched Images</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/Basic_Visualization.html#Plot">Plot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/index.html#advanced-tutorials">Advanced Tutorials</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/data.html">Data (data)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/data.html#spatial-object">Spatial Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji"><code class="docutils literal notranslate"><span class="pre">Spatioloji</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji_qc"><code class="docutils literal notranslate"><span class="pre">Spatioloji_qc</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/pl.html">Plotting (pl)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/pl.html#plot-spatial-image">Plot Spatial Image</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.stitch_fov_images"><code class="docutils literal notranslate"><span class="pre">stitch_fov_images()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_global_polygon_by_features"><code class="docutils literal notranslate"><span class="pre">plot_global_polygon_by_features()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_global_polygon_by_categorical"><code class="docutils literal notranslate"><span class="pre">plot_global_polygon_by_categorical()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_global_dot_by_features"><code class="docutils literal notranslate"><span class="pre">plot_global_dot_by_features()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_global_dot_by_categorical"><code class="docutils literal notranslate"><span class="pre">plot_global_dot_by_categorical()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_local_polygon_by_categorical"><code class="docutils literal notranslate"><span class="pre">plot_local_polygon_by_categorical()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_local_polygon_by_features"><code class="docutils literal notranslate"><span class="pre">plot_local_polygon_by_features()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_local_dots_by_categorical"><code class="docutils literal notranslate"><span class="pre">plot_local_dots_by_categorical()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_local_dots_by_features"><code class="docutils literal notranslate"><span class="pre">plot_local_dots_by_features()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/tl.html">Tools (tl)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/tl.html#spatial-functions">Spatial Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.perform_neighbor_analysis"><code class="docutils literal notranslate"><span class="pre">perform_neighbor_analysis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_nearest_neighbor_distances"><code class="docutils literal notranslate"><span class="pre">calculate_nearest_neighbor_distances()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_cell_density"><code class="docutils literal notranslate"><span class="pre">calculate_cell_density()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_ripleys_k"><code class="docutils literal notranslate"><span class="pre">calculate_ripleys_k()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_cross_k_function"><code class="docutils literal notranslate"><span class="pre">calculate_cross_k_function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_j_function"><code class="docutils literal notranslate"><span class="pre">calculate_j_function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_g_function"><code class="docutils literal notranslate"><span class="pre">calculate_g_function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_pair_correlation_function"><code class="docutils literal notranslate"><span class="pre">calculate_pair_correlation_function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_cell_type_correlation"><code class="docutils literal notranslate"><span class="pre">calculate_cell_type_correlation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_colocation_quotient"><code class="docutils literal notranslate"><span class="pre">calculate_colocation_quotient()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_proximity_analysis"><code class="docutils literal notranslate"><span class="pre">calculate_proximity_analysis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_morisita_index"><code class="docutils literal notranslate"><span class="pre">calculate_morisita_index()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_quadrat_variance"><code class="docutils literal notranslate"><span class="pre">calculate_quadrat_variance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_spatial_entropy"><code class="docutils literal notranslate"><span class="pre">calculate_spatial_entropy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_hotspot_analysis"><code class="docutils literal notranslate"><span class="pre">calculate_hotspot_analysis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_spatial_autocorrelation"><code class="docutils literal notranslate"><span class="pre">calculate_spatial_autocorrelation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_kernel_density"><code class="docutils literal notranslate"><span class="pre">calculate_kernel_density()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_spatial_heterogeneity"><code class="docutils literal notranslate"><span class="pre">calculate_spatial_heterogeneity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_mark_correlation"><code class="docutils literal notranslate"><span class="pre">calculate_mark_correlation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_spatial_context"><code class="docutils literal notranslate"><span class="pre">calculate_spatial_context()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_network_statistics"><code class="docutils literal notranslate"><span class="pre">calculate_network_statistics()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_gene_spatial_autocorrelation"><code class="docutils literal notranslate"><span class="pre">calculate_gene_spatial_autocorrelation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/utils.html">Utilities (utils)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing/index.html">Contributing to SpatioloJI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing/index.html#code-of-conduct">Code of Conduct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/index.html#ways-to-contribute">Ways to Contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/index.html#getting-started">Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing/index.html#setting-up-your-development-environment">Setting Up Your Development Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/index.html#development-workflow">Development Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing/index.html#making-changes">Making Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/index.html#code-style">Code Style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/index.html#submitting-changes">Submitting Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/index.html#documentation">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing/index.html#writing-docstrings">Writing Docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/index.html#tutorials-and-examples">Tutorials and Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/index.html#testing">Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing/index.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/index.html#running-tests">Running Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/index.html#release-process">Release Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/index.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog/index.html">changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog/index.html#version-0-2-0-2025-05-20">Version 0.2.0 (2025-05-20)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog/index.html#added">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog/index.html#fixed">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog/index.html#changed">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog/index.html#deprecated">Deprecated</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ecosystem/index.html">Ji Universe Ecosystem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ecosystem/index.html#core-packages">Core Packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ecosystem/index.html#spatioloji-core-foundation">SpatioloJI: Core Foundation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ecosystem/index.html#dimensionji-multidimensional-analysis">DimensionJI: Multidimensional Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ecosystem/index.html#communicoji-cell-cell-communication">CommunicoJI: Cell-Cell Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ecosystem/index.html#fusionji-image-transcriptome-integration">FusionJI: Image-Transcriptome Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ecosystem/index.html#encycloji-method-repository">EncycloJI: Method Repository</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ecosystem/index.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SpatioloJI</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Index</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ 
+</div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji.adata">adata (SpatioloJI.data.Spatial_Object.Spatioloji attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji.add_custom">add_custom() (SpatioloJI.data.Spatial_Object.Spatioloji method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_cell_density">calculate_cell_density() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_cell_type_correlation">calculate_cell_type_correlation() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_colocation_quotient">calculate_colocation_quotient() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_cross_k_function">calculate_cross_k_function() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_g_function">calculate_g_function() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_gene_spatial_autocorrelation">calculate_gene_spatial_autocorrelation() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_hotspot_analysis">calculate_hotspot_analysis() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_j_function">calculate_j_function() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_kernel_density">calculate_kernel_density() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_mark_correlation">calculate_mark_correlation() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_morisita_index">calculate_morisita_index() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_nearest_neighbor_distances">calculate_nearest_neighbor_distances() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_network_statistics">calculate_network_statistics() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_pair_correlation_function">calculate_pair_correlation_function() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_proximity_analysis">calculate_proximity_analysis() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_quadrat_variance">calculate_quadrat_variance() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_ripleys_k">calculate_ripleys_k() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_spatial_autocorrelation">calculate_spatial_autocorrelation() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_spatial_context">calculate_spatial_context() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_spatial_entropy">calculate_spatial_entropy() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_spatial_heterogeneity">calculate_spatial_heterogeneity() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji.cell_meta">cell_meta (SpatioloJI.data.Spatial_Object.Spatioloji attribute)</a>
+</li>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji.custom">custom (SpatioloJI.data.Spatial_Object.Spatioloji attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji_qc.filter_cells">filter_cells() (SpatioloJI.data.Spatial_Object.Spatioloji_qc method)</a>
+</li>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji_qc.filter_genes">filter_genes() (SpatioloJI.data.Spatial_Object.Spatioloji_qc method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji.fov_positions">fov_positions (SpatioloJI.data.Spatial_Object.Spatioloji attribute)</a>
+</li>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji.from_files">from_files() (SpatioloJI.data.Spatial_Object.Spatioloji static method)</a>
+</li>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji.from_pickle">from_pickle() (SpatioloJI.data.Spatial_Object.Spatioloji static method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji.get_cells_in_fov">get_cells_in_fov() (SpatioloJI.data.Spatial_Object.Spatioloji method)</a>
+</li>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji.get_custom">get_custom() (SpatioloJI.data.Spatial_Object.Spatioloji method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji.get_image">get_image() (SpatioloJI.data.Spatial_Object.Spatioloji method)</a>
+</li>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji.get_polygon_for_cell">get_polygon_for_cell() (SpatioloJI.data.Spatial_Object.Spatioloji method)</a>
+</li>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji_qc.grubbs_test">grubbs_test() (SpatioloJI.data.Spatial_Object.Spatioloji_qc method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji.image_shapes">image_shapes (SpatioloJI.data.Spatial_Object.Spatioloji attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji.images">images (SpatioloJI.data.Spatial_Object.Spatioloji attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji_qc.load_data">load_data() (SpatioloJI.data.Spatial_Object.Spatioloji_qc method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    module
+
+      <ul>
+        <li><a href="api/data.html#module-SpatioloJI.data">SpatioloJI.data</a>
+</li>
+        <li><a href="api/data.html#module-SpatioloJI.data.Spatial_Object">SpatioloJI.data.Spatial_Object</a>
+</li>
+        <li><a href="api/pl.html#module-SpatioloJI.pl">SpatioloJI.pl</a>
+</li>
+        <li><a href="api/pl.html#module-SpatioloJI.pl.Plot_Spatial_Image">SpatioloJI.pl.Plot_Spatial_Image</a>
+</li>
+        <li><a href="api/tl.html#module-SpatioloJI.tl">SpatioloJI.tl</a>
+</li>
+        <li><a href="api/tl.html#module-SpatioloJI.tl.Spatial_function">SpatioloJI.tl.Spatial_function</a>
+</li>
+        <li><a href="api/utils.html#module-SpatioloJI.utils">SpatioloJI.utils</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/tl.html#SpatioloJI.tl.Spatial_function.perform_neighbor_analysis">perform_neighbor_analysis() (in module SpatioloJI.tl.Spatial_function)</a>
+</li>
+      <li><a href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_global_dot_by_categorical">plot_global_dot_by_categorical() (in module SpatioloJI.pl.Plot_Spatial_Image)</a>
+</li>
+      <li><a href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_global_dot_by_features">plot_global_dot_by_features() (in module SpatioloJI.pl.Plot_Spatial_Image)</a>
+</li>
+      <li><a href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_global_polygon_by_categorical">plot_global_polygon_by_categorical() (in module SpatioloJI.pl.Plot_Spatial_Image)</a>
+</li>
+      <li><a href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_global_polygon_by_features">plot_global_polygon_by_features() (in module SpatioloJI.pl.Plot_Spatial_Image)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_local_dots_by_categorical">plot_local_dots_by_categorical() (in module SpatioloJI.pl.Plot_Spatial_Image)</a>
+</li>
+      <li><a href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_local_dots_by_features">plot_local_dots_by_features() (in module SpatioloJI.pl.Plot_Spatial_Image)</a>
+</li>
+      <li><a href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_local_polygon_by_categorical">plot_local_polygon_by_categorical() (in module SpatioloJI.pl.Plot_Spatial_Image)</a>
+</li>
+      <li><a href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_local_polygon_by_features">plot_local_polygon_by_features() (in module SpatioloJI.pl.Plot_Spatial_Image)</a>
+</li>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji.polygons">polygons (SpatioloJI.data.Spatial_Object.Spatioloji attribute)</a>
+</li>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji_qc.prepare_anndata">prepare_anndata() (SpatioloJI.data.Spatial_Object.Spatioloji_qc method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji_qc.qc_cell_area">qc_cell_area() (SpatioloJI.data.Spatial_Object.Spatioloji_qc method)</a>
+</li>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji_qc.qc_cell_metrics">qc_cell_metrics() (SpatioloJI.data.Spatial_Object.Spatioloji_qc method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji_qc.qc_fov_metrics">qc_fov_metrics() (SpatioloJI.data.Spatial_Object.Spatioloji_qc method)</a>
+</li>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji_qc.qc_negative_probes">qc_negative_probes() (SpatioloJI.data.Spatial_Object.Spatioloji_qc method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji.read_images_from_folder">read_images_from_folder() (SpatioloJI.data.Spatial_Object.Spatioloji static method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji_qc.run_qc_pipeline">run_qc_pipeline() (SpatioloJI.data.Spatial_Object.Spatioloji_qc method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji">Spatioloji (class in SpatioloJI.data.Spatial_Object)</a>
+</li>
+      <li>
+    SpatioloJI.data
+
+      <ul>
+        <li><a href="api/data.html#module-SpatioloJI.data">module</a>
+</li>
+      </ul></li>
+      <li>
+    SpatioloJI.data.Spatial_Object
+
+      <ul>
+        <li><a href="api/data.html#module-SpatioloJI.data.Spatial_Object">module</a>
+</li>
+      </ul></li>
+      <li>
+    SpatioloJI.pl
+
+      <ul>
+        <li><a href="api/pl.html#module-SpatioloJI.pl">module</a>
+</li>
+      </ul></li>
+      <li>
+    SpatioloJI.pl.Plot_Spatial_Image
+
+      <ul>
+        <li><a href="api/pl.html#module-SpatioloJI.pl.Plot_Spatial_Image">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    SpatioloJI.tl
+
+      <ul>
+        <li><a href="api/tl.html#module-SpatioloJI.tl">module</a>
+</li>
+      </ul></li>
+      <li>
+    SpatioloJI.tl.Spatial_function
+
+      <ul>
+        <li><a href="api/tl.html#module-SpatioloJI.tl.Spatial_function">module</a>
+</li>
+      </ul></li>
+      <li>
+    SpatioloJI.utils
+
+      <ul>
+        <li><a href="api/utils.html#module-SpatioloJI.utils">module</a>
+</li>
+      </ul></li>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji_qc">Spatioloji_qc (class in SpatioloJI.data.Spatial_Object)</a>
+</li>
+      <li><a href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.stitch_fov_images">stitch_fov_images() (in module SpatioloJI.pl.Plot_Spatial_Image)</a>
+</li>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji_qc.summarize_qc">summarize_qc() (SpatioloJI.data.Spatial_Object.Spatioloji_qc method)</a>
+</li>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji.summary">summary() (SpatioloJI.data.Spatial_Object.Spatioloji method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji.to_anndata">to_anndata() (SpatioloJI.data.Spatial_Object.Spatioloji method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji.to_pickle">to_pickle() (SpatioloJI.data.Spatial_Object.Spatioloji method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, SpatioloJI Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

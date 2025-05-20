@@ -1,0 +1,27 @@
+# Sphinx build directory
+_build/
+build/
+docs/_build/
+docs/build/
+
+# Generated documentation
+*.html
+*.js
+*.css
+*.png
+_static/
+_sources/
+_images/
+
+# Sphinx auto-generated files
+.doctrees/
+.buildinfo
+
+# Byte-compiled Python files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+*.egg-info/

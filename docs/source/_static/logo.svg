@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <defs>
+    <radialGradient id="spatiolojiGradient" cx="50%" cy="50%" r="60%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#9966FF" />
+      <stop offset="60%" stop-color="#6930c3" />
+      <stop offset="100%" stop-color="#4b1b91" />
+    </radialGradient>
+    
+    <!-- Filter for glow effects -->
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    
+    <!-- Data flow animation -->
+    <linearGradient id="dataFlowGradient" x1="0%" y1="0%" x2="100%" y2="0%" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.1">
+        <animate attributeName="offset" values="0;1" dur="3s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="20%" stop-color="#ffffff" stop-opacity="0.8">
+        <animate attributeName="offset" values="0.2;1.2" dur="3s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="40%" stop-color="#ffffff" stop-opacity="0.1">
+        <animate attributeName="offset" values="0.4;1.4" dur="3s" repeatCount="indefinite" />
+      </stop>
+    </linearGradient>
+    
+    <!-- 3D look for cells -->
+    <radialGradient id="cellGradient" cx="40%" cy="40%" r="60%" fx="30%" fy="30%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#a569ff" stop-opacity="0.6" />
+    </radialGradient>
+    
+    <!-- Clip path for data visualization -->
+    <clipPath id="visualizationClip">
+      <rect x="225" y="340" width="350" height="120" rx="5" ry="5" />
+    </clipPath>
+  </defs>
+
+  <!-- Main background circle -->
+  <circle cx="400" cy="300" r="260" fill="url(#spatiolojiGradient)" />
+  
+  <!-- Central Ji symbol -->
+  <g id="jiCore" filter="url(#softGlow)">
+    <text x="400" y="250" font-family="Arial, sans-serif" font-size="120" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">Ji</text>
+  </g>
+  
+  <!-- SpatioloJI text -->
+  <text x="400" y="310" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#ffffff" text-anchor="middle" filter="url(#softGlow)">SpatioloJI</text>
+  <text x="400" y="345" font-family="Arial, sans-serif" font-size="18" fill="#ffffff" text-anchor="middle" opacity="0.9">Core Foundation for Spatial Transcriptomics</text>
+  
+  <!-- Spatial grid representing 2D/3D space -->
+  <g id="spatialGrid" opacity="0.5">
+    <!-- Horizontal grid lines -->
+    <path d="M200,400 C250,380 350,440 400,420 C450,400 550,440 600,420" stroke="white" stroke-width="1" fill="none">
+      <animate attributeName="d" 
+        values="M200,400 C250,380 350,440 400,420 C450,400 550,440 600,420;
+                M200,410 C250,390 350,430 400,410 C450,390 550,430 600,410;
+                M200,400 C250,380 350,440 400,420 C450,400 550,440 600,420" 
+        dur="8s" repeatCount="indefinite" />
+    </path>
+    <path d="M200,420 C250,400 350,460 400,440 C450,420 550,460 600,440" stroke="white" stroke-width="1" fill="none">
+      <animate attributeName="d" 
+        values="M200,420 C250,400 350,460 400,440 C450,420 550,460 600,440;
+                M200,430 C250,410 350,450 400,430 C450,410 550,450 600,430;
+                M200,420 C250,400 350,460 400,440 C450,420 550,460 600,440" 
+        dur="8s" repeatCount="indefinite" begin="0.5s" />
+    </path>
+    <path d="M200,440 C250,420 350,480 400,460 C450,440 550,480 600,460" stroke="white" stroke-width="1" fill="none">
+      <animate attributeName="d" 
+        values="M200,440 C250,420 350,480 400,460 C450,440 550,480 600,460;
+                M200,450 C250,430 350,470 400,450 C450,430 550,470 600,450;
+                M200,440 C250,420 350,480 400,460 C450,440 550,480 600,460" 
+        dur="8s" repeatCount="indefinite" begin="1s" />
+    </path>
+    
+    <!-- Vertical grid lines with ripple effect -->
+    <path d="M250,380 C230,420 270,460 250,500" stroke="white" stroke-width="1" fill="none">
+      <animate attributeName="d" 
+        values="M250,380 C230,420 270,460 250,500;
+                M255,380 C235,420 275,460 255,500;
+                M250,380 C230,420 270,460 250,500" 
+        dur="6s" repeatCount="indefinite" />
+    </path>
+    <path d="M350,380 C330,420 370,460 350,500" stroke="white" stroke-width="1" fill="none">
+      <animate attributeName="d" 
+        values="M350,380 C330,420 370,460 350,500;
+                M355,380 C335,420 375,460 355,500;
+                M350,380 C330,420 370,460 350,500" 
+        dur="6s" repeatCount="indefinite" begin="0.5s" />
+    </path>
+    <path d="M450,380 C430,420 470,460 450,500" stroke="white" stroke-width="1" fill="none">
+      <animate attributeName="d" 
+        values="M450,380 C430,420 470,460 450,500;
+                M455,380 C435,420 475,460 455,500;
+                M450,380 C430,420 470,460 450,500" 
+        dur="6s" repeatCount="indefinite" begin="1s" />
+    </path>
+    <path d="M550,380 C530,420 570,460 550,500" stroke="white" stroke-width="1" fill="none">
+      <animate attributeName="d" 
+        values="M550,380 C530,420 570,460 550,500;
+                M555,380 C535,420 575,460 555,500;
+                M550,380 C530,420 570,460 550,500" 
+        dur="6s" repeatCount="indefinite" begin="1.5s" />
+    </path>
+  </g>
+  
+  <!-- Visualization elements -->
+  <g id="visualization" clip-path="url(#visualizationClip)">
+    <!-- Data points -->
+    <circle cx="250" cy="380" r="8" fill="url(#cellGradient)" opacity="0.9">
+      <animate attributeName="cy" values="380;375;380" dur="4s" repeatCount="indefinite" begin="0.1s" />
+    </circle>
+    <circle cx="280" cy="410" r="6" fill="url(#cellGradient)" opacity="0.8">
+      <animate attributeName="cy" values="410;415;410" dur="3.5s" repeatCount="indefinite" begin="0.7s" />
+    </circle>
+    <circle cx="320" cy="390" r="9" fill="url(#cellGradient)" opacity="0.9">
+      <animate attributeName="cy" values="390;385;390" dur="4.2s" repeatCount="indefinite" begin="0.3s" />
+    </circle>
+    <circle cx="370" cy="420" r="7" fill="url(#cellGradient)" opacity="0.8">
+      <animate attributeName="cy" values="420;425;420" dur="3.8s" repeatCount="indefinite" begin="0.9s" />
+    </circle>
+    <circle cx="410" cy="400" r="10" fill="url(#cellGradient)" opacity="0.9">
+      <animate attributeName="cy" values="400;395;400" dur="4.5s" repeatCount="indefinite" begin="0.5s" />
+    </circle>
+    <circle cx="450" cy="430" r="5" fill="url(#cellGradient)" opacity="0.8">
+      <animate attributeName="cy" values="430;435;430" dur="3.6s" repeatCount="indefinite" begin="1.1s" />
+    </circle>
+    <circle cx="490" cy="385" r="8" fill="url(#cellGradient)" opacity="0.9">
+      <animate attributeName="cy" values="385;380;385" dur="4.3s" repeatCount="indefinite" begin="0.2s" />
+    </circle>
+    <circle cx="530" cy="415" r="6" fill="url(#cellGradient)" opacity="0.8">
+      <animate attributeName="cy" values="415;420;415" dur="3.9s" repeatCount="indefinite" begin="0.8s" />
+    </circle>
+    <circle cx="560" cy="395" r="9" fill="url(#cellGradient)" opacity="0.9">
+      <animate attributeName="cy" values="395;390;395" dur="4.1s" repeatCount="indefinite" begin="0.4s" />
+    </circle>
+    
+    <!-- Connecting lines between data points with animation -->
+    <line x1="250" y1="380" x2="280" y2="410" stroke="url(#dataFlowGradient)" stroke-width="2" />
+    <line x1="280" y1="410" x2="320" y2="390" stroke="url(#dataFlowGradient)" stroke-width="2" />
+    <line x1="320" y1="390" x2="370" y2="420" stroke="url(#dataFlowGradient)" stroke-width="2" />
+    <line x1="370" y1="420" x2="410" y2="400" stroke="url(#dataFlowGradient)" stroke-width="2" />
+    <line x1="410" y1="400" x2="450" y2="430" stroke="url(#dataFlowGradient)" stroke-width="2" />
+    <line x1="450" y1="430" x2="490" y2="385" stroke="url(#dataFlowGradient)" stroke-width="2" />
+    <line x1="490" y1="385" x2="530" y2="415" stroke="url(#dataFlowGradient)" stroke-width="2" />
+    <line x1="530" y1="415" x2="560" y2="395" stroke="url(#dataFlowGradient)" stroke-width="2" />
+  </g>
+  
+  <!-- Tissue structure representation -->
+  <g id="tissueStructure" opacity="0.8">
+    <!-- Cell cluster 1 -->
+    <circle cx="250" cy="200" r="15" fill="none" stroke="white" stroke-width="1">
+      <animate attributeName="r" values="15;16;15" dur="3s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="270" cy="220" r="12" fill="none" stroke="white" stroke-width="1">
+      <animate attributeName="r" values="12;13;12" dur="3s" repeatCount="indefinite" begin="0.5s" />
+    </circle>
+    <circle cx="240" cy="230" r="14" fill="none" stroke="white" stroke-width="1">
+      <animate attributeName="r" values="14;15;14" dur="3s" repeatCount="indefinite" begin="1s" />
+    </circle>
+    
+    <!-- Cell cluster 2 -->
+    <circle cx="550" cy="200" r="13" fill="none" stroke="white" stroke-width="1">
+      <animate attributeName="r" values="13;14;13" dur="3s" repeatCount="indefinite" begin="0.2s" />
+    </circle>
+    <circle cx="530" cy="220" r="15" fill="none" stroke="white" stroke-width="1">
+      <animate attributeName="r" values="15;16;15" dur="3s" repeatCount="indefinite" begin="0.7s" />
+    </circle>
+    <circle cx="560" cy="230" r="11" fill="none" stroke="white" stroke-width="1">
+      <animate attributeName="r" values="11;12;11" dur="3s" repeatCount="indefinite" begin="1.2s" />
+    </circle>
+    
+    <!-- Connection between clusters representing spatial relationships -->
+    <path d="M270,220 C350,180 450,240 530,220" stroke="white" stroke-width="1" fill="none" stroke-dasharray="5,5">
+      <animate attributeName="d" 
+        values="M270,220 C350,180 450,240 530,220;
+                M270,225 C350,185 450,235 530,225;
+                M270,220 C350,180 450,240 530,220" 
+        dur="10s" repeatCount="indefinite" />
+    </path>
+  </g>
+  
+  <!-- Small stars scattered throughout for universe theme consistency -->
+  <g id="stars">
+    <circle cx="150" cy="120" r="1.2" fill="white" opacity="0.7">
+      <animate attributeName="opacity" values="0.7;0.2;0.7" dur="3s" repeatCount="indefinite" begin="0.1s" />
+    </circle>
+    <circle cx="700" cy="250" r="1.5" fill="white" opacity="0.8">
+      <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2.5s" repeatCount="indefinite" begin="0.5s" />
+    </circle>
+    <circle cx="320" cy="100" r="1" fill="white" opacity="0.9">
+      <animate attributeName="opacity" values="0.9;0.4;0.9" dur="4s" repeatCount="indefinite" begin="1.2s" />
+    </circle>
+    <circle cx="500" cy="150" r="1.3" fill="white" opacity="0.8">
+      <animate attributeName="opacity" values="0.8;0.3;0.8" dur="3.5s" repeatCount="indefinite" begin="0.7s" />
+    </circle>
+    <circle cx="200" cy="500" r="1.2" fill="white" opacity="0.7">
+      <animate attributeName="opacity" values="0.7;0.2;0.7" dur="2.8s" repeatCount="indefinite" begin="1.5s" />
+    </circle>
+    <circle cx="620" cy="400" r="1" fill="white" opacity="0.8">
+      <animate attributeName="opacity" values="0.8;0.3;0.8" dur="3.2s" repeatCount="indefinite" begin="0.3s" />
+    </circle>
+    <circle cx="650" cy="180" r="1.1" fill="white" opacity="0.9">
+      <animate attributeName="opacity" values="0.9;0.4;0.9" dur="2.3s" repeatCount="indefinite" begin="1.2s" />
+    </circle>
+    <circle cx="300" cy="550" r="0.8" fill="white" opacity="0.7">
+      <animate attributeName="opacity" values="0.7;0.2;0.7" dur="3.2s" repeatCount="indefinite" begin="0.7s" />
+    </circle>
+    <circle cx="520" cy="520" r="1.0" fill="white" opacity="0.8">
+      <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2.6s" repeatCount="indefinite" begin="1.8s" />
+    </circle>
+    <circle cx="120" cy="350" r="0.9" fill="white" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;0.1;0.6" dur="3.9s" repeatCount="indefinite" begin="0.3s" />
+    </circle>
+    <circle cx="680" cy="400" r="1.2" fill="white" opacity="0.8">
+      <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2.8s" repeatCount="indefinite" begin="1.5s" />
+    </circle>
+  </g>
+  
+  <!-- Workflow icons representing SpatioloJI functionality -->
+  <g id="workflowIcons" opacity="0.8">
+    <!-- Data flow animations -->
+    <line x1="225" y1="285" x2="260" y2="285" stroke="white" stroke-width="1">
+      <animate attributeName="x2" values="225;260;225" dur="3s" repeatCount="indefinite" />
+    </line>
+    
+    <line x1="345" y1="285" x2="380" y2="285" stroke="white" stroke-width="1">
+      <animate attributeName="x2" values="345;380;345" dur="3s" repeatCount="indefinite" begin="0.5s" />
+    </line>
+    
+    <line x1="425" y1="285" x2="460" y2="285" stroke="white" stroke-width="1">
+      <animate attributeName="x2" values="425;460;425" dur="3s" repeatCount="indefinite" begin="1s" />
+    </line>
+    
+    <line x1="505" y1="285" x2="540" y2="285" stroke="white" stroke-width="1">
+      <animate attributeName="x2" values="505;540;505" dur="3s" repeatCount="indefinite" begin="1.5s" />
+    </line>
+  </g>
+  
+  <!-- Orbital ring like the main universe logo -->
+  <ellipse cx="400" cy="300" rx="280" ry="220" fill="none" stroke="#8852e0" stroke-width="2" opacity="0.3">
+    <animateTransform attributeName="transform" type="rotate" from="0 400 300" to="360 400 300" dur="60s" repeatCount="indefinite" />
+  </ellipse>
+</svg>

@@ -1,0 +1,622 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data (data) &mdash; SpatioloJI 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=2d01f2b6" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=2d01f2b6" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Plotting (pl)" href="pl.html" />
+    <link rel="prev" title="API Reference" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SpatioloJI
+              <img src="../_static/logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#dependencies">Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basic_concepts.html">SpatioloJI Object Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts.html#core-components">Core Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts.html#component-details">Component Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../basic_concepts.html#adata-anndata-object">adata (AnnData Object)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_concepts.html#cell-meta-dataframe">cell_meta (DataFrame)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_concepts.html#polygons-dataframe">polygons (DataFrame)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_concepts.html#fov-positions-dataframe">fov_positions (DataFrame)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_concepts.html#images-dictionary">images (Dictionary)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts.html#integration-and-relationships">Integration and Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts.html#creating-a-spatioloji-object">Creating a SpatioloJI Object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../basic_concepts.html#from-individual-components">From Individual Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_concepts.html#from-files">From Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_concepts.html#from-pickle">From Pickle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts.html#key-methods">Key Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../basic_concepts.html#data-access">Data Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_concepts.html#custom-data">Custom Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts.html#summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">CosMx</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#basic-tutorials">Basic Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/QC_filtering.html">Quality Control and Filtering for Raw Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/QC_filtering.html#Prepare-original-data">Prepare original data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/QC_filtering.html#Instantiation-of-Spatioloji_qc-object">Instantiation of Spatioloji_qc object</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/Scanpy_SpatioloJI.html">Integrate Scanpy into Spatiology Workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/Scanpy_SpatioloJI.html#Run-basic-workflow-of-Scanpy">Run basic workflow of Scanpy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/Scanpy_SpatioloJI.html#Imputation">Imputation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/Scanpy_SpatioloJI.html#Instantiate-SpatioloJI-object">Instantiate SpatioloJI object</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/Basic_Visualization.html">Basic Visualization for Polygons or Dots in Spatial Images/ Stitiched Images</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/Basic_Visualization.html#Plot">Plot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#advanced-tutorials">Advanced Tutorials</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Data (data)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spatial-object">Spatial Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#SpatioloJI.data.Spatial_Object.Spatioloji"><code class="docutils literal notranslate"><span class="pre">Spatioloji</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#SpatioloJI.data.Spatial_Object.Spatioloji_qc"><code class="docutils literal notranslate"><span class="pre">Spatioloji_qc</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pl.html">Plotting (pl)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pl.html#plot-spatial-image">Plot Spatial Image</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pl.html#SpatioloJI.pl.Plot_Spatial_Image.stitch_fov_images"><code class="docutils literal notranslate"><span class="pre">stitch_fov_images()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_global_polygon_by_features"><code class="docutils literal notranslate"><span class="pre">plot_global_polygon_by_features()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_global_polygon_by_categorical"><code class="docutils literal notranslate"><span class="pre">plot_global_polygon_by_categorical()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_global_dot_by_features"><code class="docutils literal notranslate"><span class="pre">plot_global_dot_by_features()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_global_dot_by_categorical"><code class="docutils literal notranslate"><span class="pre">plot_global_dot_by_categorical()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_local_polygon_by_categorical"><code class="docutils literal notranslate"><span class="pre">plot_local_polygon_by_categorical()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_local_polygon_by_features"><code class="docutils literal notranslate"><span class="pre">plot_local_polygon_by_features()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_local_dots_by_categorical"><code class="docutils literal notranslate"><span class="pre">plot_local_dots_by_categorical()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_local_dots_by_features"><code class="docutils literal notranslate"><span class="pre">plot_local_dots_by_features()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tl.html">Tools (tl)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tl.html#spatial-functions">Spatial Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.perform_neighbor_analysis"><code class="docutils literal notranslate"><span class="pre">perform_neighbor_analysis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_nearest_neighbor_distances"><code class="docutils literal notranslate"><span class="pre">calculate_nearest_neighbor_distances()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_cell_density"><code class="docutils literal notranslate"><span class="pre">calculate_cell_density()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_ripleys_k"><code class="docutils literal notranslate"><span class="pre">calculate_ripleys_k()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_cross_k_function"><code class="docutils literal notranslate"><span class="pre">calculate_cross_k_function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_j_function"><code class="docutils literal notranslate"><span class="pre">calculate_j_function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_g_function"><code class="docutils literal notranslate"><span class="pre">calculate_g_function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_pair_correlation_function"><code class="docutils literal notranslate"><span class="pre">calculate_pair_correlation_function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_cell_type_correlation"><code class="docutils literal notranslate"><span class="pre">calculate_cell_type_correlation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_colocation_quotient"><code class="docutils literal notranslate"><span class="pre">calculate_colocation_quotient()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_proximity_analysis"><code class="docutils literal notranslate"><span class="pre">calculate_proximity_analysis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_morisita_index"><code class="docutils literal notranslate"><span class="pre">calculate_morisita_index()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_quadrat_variance"><code class="docutils literal notranslate"><span class="pre">calculate_quadrat_variance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_spatial_entropy"><code class="docutils literal notranslate"><span class="pre">calculate_spatial_entropy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_hotspot_analysis"><code class="docutils literal notranslate"><span class="pre">calculate_hotspot_analysis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_spatial_autocorrelation"><code class="docutils literal notranslate"><span class="pre">calculate_spatial_autocorrelation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_kernel_density"><code class="docutils literal notranslate"><span class="pre">calculate_kernel_density()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_spatial_heterogeneity"><code class="docutils literal notranslate"><span class="pre">calculate_spatial_heterogeneity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_mark_correlation"><code class="docutils literal notranslate"><span class="pre">calculate_mark_correlation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_spatial_context"><code class="docutils literal notranslate"><span class="pre">calculate_spatial_context()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_network_statistics"><code class="docutils literal notranslate"><span class="pre">calculate_network_statistics()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tl.html#SpatioloJI.tl.Spatial_function.calculate_gene_spatial_autocorrelation"><code class="docutils literal notranslate"><span class="pre">calculate_gene_spatial_autocorrelation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utilities (utils)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to SpatioloJI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/index.html#code-of-conduct">Code of Conduct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/index.html#ways-to-contribute">Ways to Contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/index.html#getting-started">Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing/index.html#setting-up-your-development-environment">Setting Up Your Development Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/index.html#development-workflow">Development Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing/index.html#making-changes">Making Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing/index.html#code-style">Code Style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing/index.html#submitting-changes">Submitting Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/index.html#documentation">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing/index.html#writing-docstrings">Writing Docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing/index.html#tutorials-and-examples">Tutorials and Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/index.html#testing">Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing/index.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing/index.html#running-tests">Running Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/index.html#release-process">Release Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/index.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog/index.html">changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog/index.html#version-0-2-0-2025-05-20">Version 0.2.0 (2025-05-20)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog/index.html#added">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog/index.html#fixed">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog/index.html#changed">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog/index.html#deprecated">Deprecated</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ecosystem/index.html">Ji Universe Ecosystem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ecosystem/index.html#core-packages">Core Packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/index.html#spatioloji-core-foundation">SpatioloJI: Core Foundation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/index.html#dimensionji-multidimensional-analysis">DimensionJI: Multidimensional Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/index.html#communicoji-cell-cell-communication">CommunicoJI: Cell-Cell Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/index.html#fusionji-image-transcriptome-integration">FusionJI: Image-Transcriptome Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/index.html#encycloji-method-repository">EncycloJI: Method Repository</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ecosystem/index.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SpatioloJI</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">API Reference</a></li>
+      <li class="breadcrumb-item active">Data (data)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/data.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-data">
+<h1>Data (data)<a class="headerlink" href="#data-data" title="Link to this heading"></a></h1>
+<section id="spatial-object">
+<span id="module-SpatioloJI.data"></span><h2>Spatial Object<a class="headerlink" href="#spatial-object" title="Link to this heading"></a></h2>
+<dl class="py class" id="module-SpatioloJI.data.Spatial_Object">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpatioloJI.data.Spatial_Object.</span></span><span class="sig-name descname"><span class="pre">Spatioloji</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">polygons</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_meta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fov_positions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">images</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_shapes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">images_folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'jpg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix_img</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CellComposite_F'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fov_id_column</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fov'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A class for managing and analyzing spatial transcriptomics data across multiple fields of view (FOVs).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji.polygons">
+<span class="sig-name descname"><span class="pre">polygons</span></span><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji.polygons" title="Link to this definition"></a></dt>
+<dd><p>DataFrame with polygon data (‘fov’, ‘x_local_px’, ‘y_local_px’, ‘x_global_px’, ‘y_global_px’, ‘cell’)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji.cell_meta">
+<span class="sig-name descname"><span class="pre">cell_meta</span></span><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji.cell_meta" title="Link to this definition"></a></dt>
+<dd><p>DataFrame with cell metadata (‘fov’, ‘CenterX_local_px’, ‘CenterY_local_px’, ‘CenterX_global_px’, ‘CenterY_global_px’, ‘cell’, others)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji.adata">
+<span class="sig-name descname"><span class="pre">adata</span></span><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji.adata" title="Link to this definition"></a></dt>
+<dd><p>AnnData object containing gene expression data, UMAP, cell types, etc.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji.fov_positions">
+<span class="sig-name descname"><span class="pre">fov_positions</span></span><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji.fov_positions" title="Link to this definition"></a></dt>
+<dd><p>DataFrame with global coordinates of FOVs (‘x_global_px’,’y_global_px’)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji.images">
+<span class="sig-name descname"><span class="pre">images</span></span><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji.images" title="Link to this definition"></a></dt>
+<dd><p>Dict mapping FOV IDs to image arrays</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji.image_shapes">
+<span class="sig-name descname"><span class="pre">image_shapes</span></span><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji.image_shapes" title="Link to this definition"></a></dt>
+<dd><p>Dict mapping FOV IDs to (width, height)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji.custom">
+<span class="sig-name descname"><span class="pre">custom</span></span><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji.custom" title="Link to this definition"></a></dt>
+<dd><p>Dict for any user-defined additional data</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji.get_cells_in_fov">
+<span class="sig-name descname"><span class="pre">get_cells_in_fov</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fov_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fov_column</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fov'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji.get_cells_in_fov"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji.get_cells_in_fov" title="Link to this definition"></a></dt>
+<dd><p>Get all cells within a specific FOV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji.get_polygon_for_cell">
+<span class="sig-name descname"><span class="pre">get_polygon_for_cell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji.get_polygon_for_cell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji.get_polygon_for_cell" title="Link to this definition"></a></dt>
+<dd><p>Get polygon data for a specific cell.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji.get_image">
+<span class="sig-name descname"><span class="pre">get_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fov_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji.get_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji.get_image" title="Link to this definition"></a></dt>
+<dd><p>Get the image for a specific FOV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji.summary">
+<span class="sig-name descname"><span class="pre">summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji.summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji.summary" title="Link to this definition"></a></dt>
+<dd><p>Get a summary of the object’s data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">any</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji.add_custom">
+<span class="sig-name descname"><span class="pre">add_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji.add_custom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji.add_custom" title="Link to this definition"></a></dt>
+<dd><p>Add custom data to the object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji.get_custom">
+<span class="sig-name descname"><span class="pre">get_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji.get_custom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji.get_custom" title="Link to this definition"></a></dt>
+<dd><p>Retrieve custom data from the object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">any</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji.to_pickle">
+<span class="sig-name descname"><span class="pre">to_pickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji.to_pickle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji.to_pickle" title="Link to this definition"></a></dt>
+<dd><p>Save the object to a pickle file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji.from_pickle">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_pickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji.from_pickle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji.from_pickle" title="Link to this definition"></a></dt>
+<dd><p>Load a Spatioloji object from a pickle file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#SpatioloJI.data.Spatial_Object.Spatioloji" title="SpatioloJI.data.Spatial_Object.Spatioloji"><code class="xref py py-class docutils literal notranslate"><span class="pre">Spatioloji</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji.to_anndata">
+<span class="sig-name descname"><span class="pre">to_anndata</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji.to_anndata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji.to_anndata" title="Link to this definition"></a></dt>
+<dd><p>Get the AnnData object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.html#anndata.AnnData" title="(in anndata v0.11.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnnData</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji.read_images_from_folder">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_images_from_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fov_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'jpg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix_img</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CellComposite_F'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji.read_images_from_folder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji.read_images_from_folder" title="Link to this definition"></a></dt>
+<dd><p>Read images for all FOVs from a folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>folder_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Path to the folder containing images</p></li>
+<li><p><strong>fov_ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – List of FOV IDs to load images for</p></li>
+<li><p><strong>img_format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Image file format extension (e.g., ‘jpg’, ‘png’)</p></li>
+<li><p><strong>prefix_img</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Prefix for image filenames (e.g., ‘CellComposite_F’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>Dictionary mapping FOV IDs to image arrays</p></li>
+<li><p>Dictionary mapping FOV IDs to image shapes (width, height)</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple containing</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji.from_files">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">polygons_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_meta_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adata_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fov_positions_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">images_folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'jpg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix_img</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CellComposite_F'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fov_id_column</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fov'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji.from_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji.from_files" title="Link to this definition"></a></dt>
+<dd><p>Create a Spatioloji object from file paths.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>polygons_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Path to CSV file with polygon data</p></li>
+<li><p><strong>cell_meta_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Path to CSV file with cell metadata</p></li>
+<li><p><strong>adata_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Path to h5ad file with gene expression data</p></li>
+<li><p><strong>fov_positions_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Path to CSV file with FOV positions</p></li>
+<li><p><strong>images_folder</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Optional path to folder containing FOV images</p></li>
+<li><p><strong>img_format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Image file format extension (default: ‘jpg’)</p></li>
+<li><p><strong>prefix_img</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Prefix for image filenames (default: ‘CellComposite_F’)</p></li>
+<li><p><strong>fov_id_column</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Column name for FOV IDs in fov_positions (default: ‘fov’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#SpatioloJI.data.Spatial_Object.Spatioloji" title="SpatioloJI.data.Spatial_Object.Spatioloji"><code class="xref py py-class docutils literal notranslate"><span class="pre">Spatioloji</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new Spatioloji object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji_qc">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpatioloJI.data.Spatial_Object.</span></span><span class="sig-name descname"><span class="pre">Spatioloji_qc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_metadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./output/'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji_qc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji_qc" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A class for handling spatial transcriptomics data analysis and quality control.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji_qc.load_data">
+<span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr_matrix_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_metadata_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji_qc.load_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji_qc.load_data" title="Link to this definition"></a></dt>
+<dd><p>Load data from files.</p>
+<section id="parameters">
+<h3>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>expr_matrix_path<span class="classifier">str</span></dt><dd><p>Path to expression matrix file</p>
+</dd>
+<dt>cell_metadata_path<span class="classifier">str</span></dt><dd><p>Path to cell metadata file</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji_qc.prepare_anndata">
+<span class="sig-name descname"><span class="pre">prepare_anndata</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji_qc.prepare_anndata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji_qc.prepare_anndata" title="Link to this definition"></a></dt>
+<dd><p>Create AnnData object from expression matrix and prepare it for QC.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji_qc.grubbs_test">
+<span class="sig-name descname"><span class="pre">grubbs_test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji_qc.grubbs_test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji_qc.grubbs_test" title="Link to this definition"></a></dt>
+<dd><p>Perform Grubbs test to detect outliers.</p>
+<section id="id1">
+<h3>Parameters:<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>data<span class="classifier">array-like</span></dt><dd><p>Data to test for outliers</p>
+</dd>
+<dt>alpha<span class="classifier">float</span></dt><dd><p>Significance level</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns:<a class="headerlink" href="#returns" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>int</dt><dd><p>Index of outlier or -1 if no outlier detected</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji_qc.qc_negative_probes">
+<span class="sig-name descname"><span class="pre">qc_negative_probes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji_qc.qc_negative_probes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji_qc.qc_negative_probes" title="Link to this definition"></a></dt>
+<dd><p>Perform QC on negative probes.</p>
+<section id="id2">
+<h3>Parameters:<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>alpha<span class="classifier">float</span></dt><dd><p>Significance level for outlier detection</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji_qc.qc_cell_area">
+<span class="sig-name descname"><span class="pre">qc_cell_area</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji_qc.qc_cell_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji_qc.qc_cell_area" title="Link to this definition"></a></dt>
+<dd><p>Perform QC on cell area.</p>
+<section id="id3">
+<h3>Parameters:<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>alpha<span class="classifier">float</span></dt><dd><p>Significance level for outlier detection</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji_qc.qc_cell_metrics">
+<span class="sig-name descname"><span class="pre">qc_cell_metrics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji_qc.qc_cell_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji_qc.qc_cell_metrics" title="Link to this definition"></a></dt>
+<dd><p>Perform QC on cell-level metrics.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji_qc.filter_cells">
+<span class="sig-name descname"><span class="pre">filter_cells</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji_qc.filter_cells"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji_qc.filter_cells" title="Link to this definition"></a></dt>
+<dd><p>Filter cells based on QC metrics.</p>
+<section id="id4">
+<h3>Returns:<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>pandas.DataFrame</dt><dd><p>Filtered cell observations</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji_qc.qc_fov_metrics">
+<span class="sig-name descname"><span class="pre">qc_fov_metrics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji_qc.qc_fov_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji_qc.qc_fov_metrics" title="Link to this definition"></a></dt>
+<dd><p>Perform QC on FOV-level metrics.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji_qc.filter_genes">
+<span class="sig-name descname"><span class="pre">filter_genes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji_qc.filter_genes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji_qc.filter_genes" title="Link to this definition"></a></dt>
+<dd><p>Filter genes based on expression compared to negative probes.</p>
+<section id="id5">
+<h3>Returns:<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>pandas.DataFrame</dt><dd><p>Filtered gene expression matrix</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji_qc.summarize_qc">
+<span class="sig-name descname"><span class="pre">summarize_qc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_filtered_cells</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji_qc.summarize_qc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji_qc.summarize_qc" title="Link to this definition"></a></dt>
+<dd><p>Summarize QC results for cells and genes.</p>
+<section id="id6">
+<h3>Parameters:<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>df_filtered_cells<span class="classifier">pandas.DataFrame</span></dt><dd><p>Filtered cell observations</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpatioloJI.data.Spatial_Object.Spatioloji_qc.run_qc_pipeline">
+<span class="sig-name descname"><span class="pre">run_qc_pipeline</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SpatioloJI/data/Spatial_Object.html#Spatioloji_qc.run_qc_pipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SpatioloJI.data.Spatial_Object.Spatioloji_qc.run_qc_pipeline" title="Link to this definition"></a></dt>
+<dd><p>Run the complete QC pipeline.</p>
+<section id="id7">
+<h3>Returns:<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>tuple</dt><dd><p>(filtered_cells, filtered_genes)</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pl.html" class="btn btn-neutral float-right" title="Plotting (pl)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, SpatioloJI Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

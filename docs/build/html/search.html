@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search &mdash; SpatioloJI 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=2d01f2b6" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=2d01f2b6" />
+
+  
+    
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="#" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SpatioloJI
+              <img src="_static/logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#dependencies">Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basic_concepts.html">SpatioloJI Object Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_concepts.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_concepts.html#core-components">Core Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_concepts.html#component-details">Component Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#adata-anndata-object">adata (AnnData Object)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#cell-meta-dataframe">cell_meta (DataFrame)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#polygons-dataframe">polygons (DataFrame)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#fov-positions-dataframe">fov_positions (DataFrame)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#images-dictionary">images (Dictionary)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_concepts.html#integration-and-relationships">Integration and Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_concepts.html#creating-a-spatioloji-object">Creating a SpatioloJI Object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#from-individual-components">From Individual Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#from-files">From Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#from-pickle">From Pickle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_concepts.html#key-methods">Key Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#data-access">Data Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_concepts.html#custom-data">Custom Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_concepts.html#summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">CosMx</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/index.html#basic-tutorials">Basic Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/QC_filtering.html">Quality Control and Filtering for Raw Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/QC_filtering.html#Prepare-original-data">Prepare original data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/QC_filtering.html#Instantiation-of-Spatioloji_qc-object">Instantiation of Spatioloji_qc object</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/Scanpy_SpatioloJI.html">Integrate Scanpy into Spatiology Workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/Scanpy_SpatioloJI.html#Run-basic-workflow-of-Scanpy">Run basic workflow of Scanpy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/Scanpy_SpatioloJI.html#Imputation">Imputation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/Scanpy_SpatioloJI.html#Instantiate-SpatioloJI-object">Instantiate SpatioloJI object</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/Basic_Visualization.html">Basic Visualization for Polygons or Dots in Spatial Images/ Stitiched Images</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorials/Basic_Visualization.html#Plot">Plot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/index.html#advanced-tutorials">Advanced Tutorials</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/data.html">Data (data)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/data.html#spatial-object">Spatial Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji"><code class="docutils literal notranslate"><span class="pre">Spatioloji</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/data.html#SpatioloJI.data.Spatial_Object.Spatioloji_qc"><code class="docutils literal notranslate"><span class="pre">Spatioloji_qc</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/pl.html">Plotting (pl)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/pl.html#plot-spatial-image">Plot Spatial Image</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.stitch_fov_images"><code class="docutils literal notranslate"><span class="pre">stitch_fov_images()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_global_polygon_by_features"><code class="docutils literal notranslate"><span class="pre">plot_global_polygon_by_features()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_global_polygon_by_categorical"><code class="docutils literal notranslate"><span class="pre">plot_global_polygon_by_categorical()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_global_dot_by_features"><code class="docutils literal notranslate"><span class="pre">plot_global_dot_by_features()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_global_dot_by_categorical"><code class="docutils literal notranslate"><span class="pre">plot_global_dot_by_categorical()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_local_polygon_by_categorical"><code class="docutils literal notranslate"><span class="pre">plot_local_polygon_by_categorical()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_local_polygon_by_features"><code class="docutils literal notranslate"><span class="pre">plot_local_polygon_by_features()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_local_dots_by_categorical"><code class="docutils literal notranslate"><span class="pre">plot_local_dots_by_categorical()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/pl.html#SpatioloJI.pl.Plot_Spatial_Image.plot_local_dots_by_features"><code class="docutils literal notranslate"><span class="pre">plot_local_dots_by_features()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/tl.html">Tools (tl)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/tl.html#spatial-functions">Spatial Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.perform_neighbor_analysis"><code class="docutils literal notranslate"><span class="pre">perform_neighbor_analysis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_nearest_neighbor_distances"><code class="docutils literal notranslate"><span class="pre">calculate_nearest_neighbor_distances()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_cell_density"><code class="docutils literal notranslate"><span class="pre">calculate_cell_density()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_ripleys_k"><code class="docutils literal notranslate"><span class="pre">calculate_ripleys_k()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_cross_k_function"><code class="docutils literal notranslate"><span class="pre">calculate_cross_k_function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_j_function"><code class="docutils literal notranslate"><span class="pre">calculate_j_function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_g_function"><code class="docutils literal notranslate"><span class="pre">calculate_g_function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_pair_correlation_function"><code class="docutils literal notranslate"><span class="pre">calculate_pair_correlation_function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_cell_type_correlation"><code class="docutils literal notranslate"><span class="pre">calculate_cell_type_correlation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_colocation_quotient"><code class="docutils literal notranslate"><span class="pre">calculate_colocation_quotient()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_proximity_analysis"><code class="docutils literal notranslate"><span class="pre">calculate_proximity_analysis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_morisita_index"><code class="docutils literal notranslate"><span class="pre">calculate_morisita_index()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_quadrat_variance"><code class="docutils literal notranslate"><span class="pre">calculate_quadrat_variance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_spatial_entropy"><code class="docutils literal notranslate"><span class="pre">calculate_spatial_entropy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_hotspot_analysis"><code class="docutils literal notranslate"><span class="pre">calculate_hotspot_analysis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_spatial_autocorrelation"><code class="docutils literal notranslate"><span class="pre">calculate_spatial_autocorrelation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_kernel_density"><code class="docutils literal notranslate"><span class="pre">calculate_kernel_density()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_spatial_heterogeneity"><code class="docutils literal notranslate"><span class="pre">calculate_spatial_heterogeneity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_mark_correlation"><code class="docutils literal notranslate"><span class="pre">calculate_mark_correlation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_spatial_context"><code class="docutils literal notranslate"><span class="pre">calculate_spatial_context()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_network_statistics"><code class="docutils literal notranslate"><span class="pre">calculate_network_statistics()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/tl.html#SpatioloJI.tl.Spatial_function.calculate_gene_spatial_autocorrelation"><code class="docutils literal notranslate"><span class="pre">calculate_gene_spatial_autocorrelation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/utils.html">Utilities (utils)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing/index.html">Contributing to SpatioloJI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing/index.html#code-of-conduct">Code of Conduct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/index.html#ways-to-contribute">Ways to Contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/index.html#getting-started">Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing/index.html#setting-up-your-development-environment">Setting Up Your Development Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/index.html#development-workflow">Development Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing/index.html#making-changes">Making Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/index.html#code-style">Code Style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/index.html#submitting-changes">Submitting Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/index.html#documentation">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing/index.html#writing-docstrings">Writing Docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/index.html#tutorials-and-examples">Tutorials and Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/index.html#testing">Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing/index.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing/index.html#running-tests">Running Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/index.html#release-process">Release Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/index.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog/index.html">changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog/index.html#version-0-2-0-2025-05-20">Version 0.2.0 (2025-05-20)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog/index.html#added">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog/index.html#fixed">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog/index.html#changed">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog/index.html#deprecated">Deprecated</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ecosystem/index.html">Ji Universe Ecosystem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ecosystem/index.html#core-packages">Core Packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ecosystem/index.html#spatioloji-core-foundation">SpatioloJI: Core Foundation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ecosystem/index.html#dimensionji-multidimensional-analysis">DimensionJI: Multidimensional Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ecosystem/index.html#communicoji-cell-cell-communication">CommunicoJI: Cell-Cell Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ecosystem/index.html#fusionji-image-transcriptome-integration">FusionJI: Image-Transcriptome Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ecosystem/index.html#encycloji-method-repository">EncycloJI: Method Repository</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ecosystem/index.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SpatioloJI</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Search</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <noscript>
+  <div id="fallback" class="admonition warning">
+    <p class="last">
+      Please activate JavaScript to enable the search functionality.
+    </p>
+  </div>
+  </noscript>
+
+  
+  <div id="search-results">
+  
+  </div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, SpatioloJI Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+  <script>
+    jQuery(function() { Search.loadIndex("searchindex.js"); });
+  </script>
+  
+  <script id="searchindexloader"></script>
+   
+
+
+</body>
+</html>
