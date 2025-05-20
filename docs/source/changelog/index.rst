@@ -1,4 +1,4 @@
-changelog
+Changelog
 ==========
 
 This file documents all notable changes to SpatioloJI throughout its release history beginning from Version 0.2.0.
