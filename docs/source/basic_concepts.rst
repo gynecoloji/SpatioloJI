@@ -1,137 +1,101 @@
-SpatioloJI Object Structure
-==========================
 
-Overview
---------
+Introduction to Spatioloji Object: Advanced Spatial Transcriptomics Framework
+=======================================================================
 
-The ``Spatioloji`` class provides a unified container for spatial transcriptomics data analysis, integrating multiple data modalities for comprehensive spatial biology research. It organizes expression data, metadata, spatial coordinates, and images into a cohesive structure for streamlined analysis.
+.. image:: _static/spatioloji-object-animation.svg
+   :width: 300px
+   :align: center
 
+Spatioloji is a sophisticated Python framework specifically designed for managing and analyzing spatial transcriptomics data across multiple fields of view (FOVs). It provides a comprehensive object-oriented solution that elegantly handles the complex relationships between spatial coordinates, cellular morphologies, and gene expression data.
 
-Core Components
---------------
+Key Features and Advantages
+-------------------------------
 
-The ``Spatioloji`` object consists of five primary components:
+1. Unified Data Integration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. **adata**
-   A standard AnnData object containing gene expression data and analysis results.
+Spatioloji excels at integrating diverse data types within a cohesive object structure:
 
-2. **cell_meta**
-   DataFrame with cell-level metadata and spatial coordinates.
+* **Cell morphology**: Stores and manages cell polygon boundaries via the ``polygons`` attribute
+* **Gene expression**: Incorporates AnnData objects through the ``adata`` attribute
+* **Cell metadata**: Maintains annotations and classifications in the ``cell_meta`` attribute
+* **Spatial context**: Preserves field of view positions via ``fov_positions``
+* **Visual data**: Directly links microscopy images through the ``images`` dictionary
 
-3. **polygons**
-   DataFrame containing cell boundary polygons.
+2. Dual Coordinate System Management
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-4. **fov_positions**
-   DataFrame mapping global coordinates of fields of view.
+One of Spatioloji's most powerful features is its simultaneous support for both local and global coordinate systems:
 
-5. **images**
-   Dictionary of microscopy images for each field of view.
+* **Local coordinates** (``gdf_local``): For analyzing relationships within individual fields of view
+* **Global coordinates** (``gdf_global``): For examining patterns across the entire tissue sample
 
-Additional attributes include ``image_shapes`` for storing image dimensions and ``custom`` for user-defined data.
+This dual approach eliminates the need to continually transform between coordinate systems during analysis.
 
-Component Details
----------------
+3. Advanced Spatial Analysis Capabilities
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-adata (AnnData Object)
-~~~~~~~~~~~~~~~~~~~~~
+Spatioloji automatically converts raw polygon data into GeoDataFrames, leveraging the powerful spatial analysis capabilities of the GeoPandas library:
 
-The central component is an AnnData object that follows the standard structure:
+* Automatic polygon construction from vertex coordinates
+* Seamless integration with spatial analysis tools
+* Built-in validation of spatial data integrity
 
-- **X**: Gene expression matrix (cells × genes)
-- **obs**: Cell annotations (incorporated from cell_meta)
-- **var**: Gene annotations
-- **obsm**: Multi-dimensional observations (e.g., UMAP, spatial coordinates)
-- **uns**: Unstructured annotations (analysis results)
+4. Efficient Data Subsetting
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-cell_meta (DataFrame)
-~~~~~~~~~~~~~~~~~~~
+The framework offers intuitive methods for creating coherent data subsets while maintaining all relational connections:
 
-Contains metadata for each cell with spatial context:
+* ``subset_by_fovs()``: Extract specific fields of view while preserving all data relationships
+* ``subset_by_cells()``: Focus on particular cells of interest across all data modalities
 
-- Row index: Cell IDs
-- Columns include:
-  - ``fov``: Field of view ID
-  - ``CenterX_local_px``, ``CenterY_local_px``: Coordinates within FOV
-  - ``CenterX_global_px``, ``CenterY_global_px``: Coordinates in global space
-  - Cell type annotations and other metadata
+5. Flexible Extensibility
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-polygons (DataFrame)
-~~~~~~~~~~~~~~~~~~
+Spatioloji provides a ``custom`` dictionary attribute for storing user-defined data, allowing for seamless extension with additional analysis results or specialized data structures.
 
-Defines cell boundaries as polygon coordinates:
+Comparison with Other Frameworks
+----------------------------------
 
-- ``cell``: Cell identifier
-- ``fov``: Field of view identifier
-- ``x_local_px``, ``y_local_px``: Local polygon coordinates
-- ``x_global_px``, ``y_global_px``: Global polygon coordinates
-
-fov_positions (DataFrame)
+Spatioloji vs. Scanpy
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Maps the global positions of each field of view:
+While Scanpy is a powerful tool for single-cell analysis, Spatioloji offers several advantages for spatial transcriptomics:
 
-- Row index: FOV IDs
-- ``x_global_px``, ``y_global_px``: Global coordinates of FOV origins
+* **Coordinate awareness**: Scanpy lacks native handling of cell geometries and spatial coordinates, while Spatioloji manages both local and global coordinate systems
+* **Image integration**: Scanpy doesn't natively support microscopy image incorporation, whereas Spatioloji directly links images to fields of view
+* **Polygon-based analysis**: Spatioloji's GeoDataFrame integration enables sophisticated spatial analyses not available in Scanpy
+* **Multi-FOV support**: Scanpy has no built-in concept of fields of view, while Spatioloji was specifically designed for tiled/multi-FOV datasets
 
-images (Dictionary)
-~~~~~~~~~~~~~~~~
+Spatioloji vs. Squidpy
+~~~~~~~~~~~~~~~~~~~~~~~
 
-Stores the microscopy images for visualization:
+Squidpy extends Scanpy with spatial capabilities, but Spatioloji still offers distinct advantages:
 
-- Keys: FOV IDs
-- Values: Image arrays (height × width × channels)
+* **Cell morphology**: Squidpy focuses primarily on spot-based or pixel-based data, while Spatioloji excels with polygon-based cell boundaries
+* **Multiple coordinate frames**: Squidpy typically works in a single coordinate system, whereas Spatioloji maintains both local and global frames
+* **Image handling**: Spatioloji offers more direct and flexible image linking compared to Squidpy's image container
+* **Field of view management**: Spatioloji provides native multi-FOV support, which is more limited in Squidpy
 
-Integration and Relationships
----------------------------
+Spatioloji vs. Seurat (R)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The SpatioloJI object maintains relationships between components:
+Seurat is the dominant R framework for single-cell analysis with some spatial extensions, but Spatioloji provides distinct benefits:
 
-- Cell IDs serve as common identifiers across ``adata``, ``cell_meta``, and ``polygons``
-- FOV IDs connect ``cell_meta``, ``fov_positions``, and ``images``
-- Spatial coordinates link cells to their position in tissue context
-- Analysis results in ``adata`` can be visualized using the spatial information
+* **Python ecosystem**: Full integration with Python's data science stack
+* **Geometric analysis**: Better support for cell polygons versus Seurat's primarily spot-based approach
+* **Coordinate flexibility**: More advanced handling of multiple coordinate systems
+* **Image integration**: More direct microscopy image association
 
-Creating a SpatioloJI Object
---------------------------
+Ideal Use Cases
+------------------
 
-Objects can be created in several ways:
+Spatioloji is particularly well-suited for:
 
-From Individual Components
-~~~~~~~~~~~~~~~~~~~~~~~~~
+1. High-plex imaging-based spatial transcriptomics technologies (MERFISH, Nanostring CosMx, etc.)
+2. Multi-FOV datasets where both local context and global positioning matter
+3. Analyses that require cell morphology information alongside gene expression
+4. Projects needing seamless integration of microscopy images with transcriptomic data
+5. Spatial transcriptomics workflows requiring sophisticated geometric operations
 
-Provide the polygons DataFrame, cell metadata DataFrame, AnnData object, and FOV positions DataFrame directly to the constructor, with optional image data.
-
-From Files
-~~~~~~~~~
-
-Use the ``from_files`` static method to create an object from CSV files for polygons, metadata, and FOV positions, and an H5AD file for the AnnData object.
-
-From Pickle
-~~~~~~~~~~
-
-Save an existing object to a pickle file using ``to_pickle`` and load it later with the ``from_pickle`` static method.
-
-Key Methods
----------
-
-The SpatioloJI object provides methods for data access and manipulation:
-
-Data Access
-~~~~~~~~~~
-
-- ``get_cells_in_fov(fov_id)``: Get cells within a specific FOV
-- ``get_polygon_for_cell(cell_id)``: Get polygon data for a specific cell
-- ``get_image(fov_id)``: Get the image for a specific FOV
-- ``summary()``: Get a summary of the object's data
-
-Custom Data
-~~~~~~~~~~
-
-- ``add_custom(key, value)``: Add custom data to the object
-- ``get_custom(key)``: Retrieve custom data
-
-   
-Summary
-------
-
-The SpatioloJI object provides a comprehensive framework for spatial transcriptomics analysis by integrating gene expression data with spatial information and microscopy images. This unified structure facilitates both high-level exploration and detailed investigation of spatial biology phenomena, enabling researchers to uncover meaningful insights from complex spatial datasets.
+By combining cell morphology, gene expression, and spatial context in a unified framework, Spatioloji offers a powerful solution for researchers working with spatially resolved transcriptomic data.
