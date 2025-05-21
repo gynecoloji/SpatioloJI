@@ -29,6 +29,7 @@ extensions = [
     'nbsphinx',                  # Jupyter notebook integration
     'sphinx_copybutton',         # Add "copy" button to code blocks
     'sphinx_autodoc_typehints',  # Use Python type hints in documentation
+    'sphinxcontrib.svg2pdfconverter',
 ]
 
 # Add any paths that contain templates here
