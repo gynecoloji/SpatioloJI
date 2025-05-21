@@ -83,10 +83,6 @@ html_css_files = [
 def setup(app):
     # Add custom CSS file
     app.add_css_file('custom.css')
-    
-    # Make sure SVGs copy to the output
-    app.add_config_value('html_context', {'copysource': True}, 'html')
-    app.connect('build-finished', copy_svg_files)
 
 def copy_svg_files(app, exception):
     """Copy SVG files to the _static directory."""
