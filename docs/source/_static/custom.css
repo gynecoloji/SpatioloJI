@@ -1,15 +1,153 @@
-/* Add custom styles here */
+/* Dark theme similar to Scanpy docs */
+:root {
+    --body-bg-color: #0d1117;
+    --body-text-color: #c9d1d9;
+    --link-color: #58a6ff;
+    --link-hover-color: #8cb4ff;
+    --sidebar-bg: #161b22;
+    --sidebar-text-color: #c9d1d9;
+    --code-bg: #21262d;
+    --code-text: #c9d1d9;
+    --table-bg: #21262d;
+    --table-head-bg: #30363d;
+    --navbar-bg: #161b22;
+    --highlight-code-bg: #21262d;
+    --search-input-bg: #0d1117;
+}
+
+/* Global styles */
+body {
+    background-color: var(--body-bg-color);
+    color: var(--body-text-color);
+}
+
 .wy-nav-content {
-    max-width: 1000px !important;
+    background-color: var(--body-bg-color);
+    color: var(--body-text-color);
+    max-width: 1000px; /* Wider content area */
 }
 
-/* Make tables wider */
-.wy-table-responsive table td, .wy-table-responsive table th {
-    white-space: normal;
+/* Links */
+a {
+    color: var(--link-color);
 }
 
-/* Improve code block styling */
-div.highlight pre {
-    padding: 10px;
-    line-height: 1.5;
+a:hover {
+    color: var(--link-hover-color);
+}
+
+/* Sidebar */
+.wy-side-nav-search {
+    background-color: var(--navbar-bg);
+}
+
+.wy-nav-side {
+    background-color: var(--sidebar-bg);
+}
+
+.wy-menu-vertical a {
+    color: var(--sidebar-text-color);
+}
+
+.wy-menu-vertical li.current a {
+    color: var(--body-text-color);
+    background-color: #21262d;
+    border-color: #30363d;
+}
+
+.wy-menu-vertical li.toctree-l1.current > a,
+.wy-menu-vertical li.current > a {
+    border-color: #30363d;
+    background-color: #21262d;
+}
+
+.wy-menu-vertical li.toctree-l2.current > a,
+.wy-menu-vertical li.toctree-l2.current li.toctree-l3 > a {
+    background-color: #1c2128;
+}
+
+/* Code blocks */
+.highlight {
+    background-color: var(--highlight-code-bg);
+}
+
+code, .code {
+    background-color: var(--code-bg);
+    color: var(--code-text);
+    border-color: #30363d;
+}
+
+.highlight .nx, .highlight .n {
+    color: #d2a8ff;
+}
+
+.highlight .c1, .highlight .cm {
+    color: #8b949e;
+}
+
+.highlight .k, .highlight .kn, .highlight .kd {
+    color: #ff7b72;
+}
+
+.highlight .s, .highlight .s1, .highlight .s2 {
+    color: #a5d6ff;
+}
+
+/* Tables */
+.rst-content table.docutils {
+    border-color: #30363d;
+}
+
+.rst-content table.docutils thead th {
+    background-color: var(--table-head-bg);
+    color: var(--body-text-color);
+    border-color: #30363d;
+}
+
+.rst-content table.docutils td {
+    background-color: var(--table-bg);
+    border-color: #30363d;
+}
+
+/* Admonitions (notes, warnings, etc.) */
+.rst-content .note, .rst-content .hint,
+.rst-content .attention, .rst-content .caution,
+.rst-content .danger, .rst-content .error,
+.rst-content .important, .rst-content .tip,
+.rst-content .warning, .rst-content .seealso,
+.rst-content .admonition-todo {
+    background-color: #1c2128;
+    border-color: #30363d;
+}
+
+.rst-content .note .admonition-title,
+.rst-content .hint .admonition-title,
+.rst-content .attention .admonition-title,
+.rst-content .caution .admonition-title,
+.rst-content .danger .admonition-title,
+.rst-content .error .admonition-title,
+.rst-content .important .admonition-title,
+.rst-content .tip .admonition-title,
+.rst-content .warning .admonition-title,
+.rst-content .seealso .admonition-title,
+.rst-content .admonition-todo .admonition-title {
+    background-color: #30363d;
+    color: #c9d1d9;
+}
+
+/* Search box */
+.wy-side-nav-search input[type="text"] {
+    background-color: var(--search-input-bg);
+    color: var(--body-text-color);
+    border-color: #30363d;
+}
+
+/* Footer */
+footer {
+    color: var(--body-text-color);
+}
+
+/* Don't invert logo SVGs */
+.wy-side-nav-search .logo svg {
+    filter: none;
 }
