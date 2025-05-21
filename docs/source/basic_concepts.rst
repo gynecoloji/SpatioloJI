@@ -2,7 +2,7 @@ Introduction to Spatioloji Object: Advanced Spatial Transcriptomics Framework
 =======================================================================
 
 .. image:: _static/spatioloji-object-animation.svg
-   :width: 300px
+   :width: 500px
    :align: center
 
 Spatioloji is a sophisticated Python framework specifically designed for managing and analyzing spatial transcriptomics data across multiple fields of view (FOVs). It provides a comprehensive object-oriented solution that elegantly handles the complex relationships between spatial coordinates, cellular morphologies, and gene expression data.
