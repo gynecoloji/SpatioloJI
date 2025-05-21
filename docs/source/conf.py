@@ -83,3 +83,25 @@ html_css_files = [
 def setup(app):
     # Add custom CSS file
     app.add_css_file('custom.css')
+    
+    # Make sure SVGs copy to the output
+    app.add_config_value('html_context', {'copysource': True}, 'html')
+    app.connect('build-finished', copy_svg_files)
+
+def copy_svg_files(app, exception):
+    """Copy SVG files to the _static directory."""
+    import os
+    import shutil
+    from sphinx.util.fileutil import copy_asset
+    
+    if exception is None:  # Only do this if the build succeeded
+        for path in app.builder.config.html_static_path:
+            input_path = os.path.join(app.srcdir, path)
+            output_path = os.path.join(app.outdir, '_static')
+            if os.path.exists(input_path):
+                for filename in os.listdir(input_path):
+                    if filename.endswith('.svg'):
+                        src = os.path.join(input_path, filename)
+                        dst = os.path.join(output_path, filename)
+                        if os.path.exists(src):
+                            shutil.copy2(src, dst)
