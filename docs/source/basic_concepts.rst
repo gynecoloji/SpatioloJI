@@ -1,7 +1,7 @@
 Introduction to Spatioloji Object: Advanced Spatial Transcriptomics Framework
 =======================================================================
 
-.. image:: _static/spatioloji-object-animation.svg
+.. image:: _static/logo1.svg
    :width: 500px
    :align: center
 
