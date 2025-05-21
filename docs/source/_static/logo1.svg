@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="900" viewBox="0 0 1000 900">
+  <!-- Definitions -->
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#4F46E5" />
+    </linearGradient>
+    
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B5CF6" />
+      <stop offset="50%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#EC4899" />
+    </linearGradient>
+    
+    <linearGradient id="polygonsGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#A78BFA" />
+    </linearGradient>
+    
+    <linearGradient id="gdfGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#60A5FA" />
+    </linearGradient>
+    
+    <linearGradient id="adataGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EC4899" />
+      <stop offset="100%" stop-color="#F472B6" />
+    </linearGradient>
+    
+    <linearGradient id="fovGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#FBBF24" />
+    </linearGradient>
+    
+    <linearGradient id="imagesGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#34D399" />
+    </linearGradient>
+    
+    <linearGradient id="methodsGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F472B6" />
+      <stop offset="100%" stop-color="#FB7185" />
+    </linearGradient>
+    
+    <!-- Filters -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    
+    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.3" />
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1000" height="900" fill="url(#bgGradient)" />
+  
+  <!-- Decorative background elements -->
+  <g opacity="0.1">
+    <circle cx="250" cy="150" r="7" fill="#F472B6" />
+    <circle cx="280" cy="200" r="5" fill="#60A5FA" />
+    <circle cx="220" cy="250" r="9" fill="#34D399" />
+    <circle cx="300" cy="170" r="6" fill="#FBBF24" />
+    
+    <circle cx="750" cy="150" r="7" fill="#F472B6" />
+    <circle cx="720" cy="200" r="5" fill="#60A5FA" />
+    <circle cx="780" cy="250" r="9" fill="#34D399" />
+    <circle cx="700" cy="170" r="6" fill="#FBBF24" />
+    
+    <circle cx="350" cy="750" r="7" fill="#F472B6" />
+    <circle cx="400" cy="780" r="5" fill="#60A5FA" />
+    <circle cx="450" cy="800" r="9" fill="#34D399" />
+    <circle cx="500" cy="780" r="6" fill="#FBBF24" />
+    <circle cx="550" cy="750" r="7" fill="#A78BFA" />
+    <circle cx="650" cy="700" r="5" fill="#60A5FA" />
+    <circle cx="700" cy="730" r="7" fill="#34D399" />
+    <circle cx="150" cy="600" r="6" fill="#F472B6" />
+    <circle cx="180" cy="700" r="8" fill="#FBBF24" />
+    <circle cx="850" cy="630" r="9" fill="#A78BFA" />
+  </g>
+  
+  <!-- Main container for all central elements -->
+  <g id="mainContent">
+    <!-- Central circular logo area -->
+    <circle cx="500" cy="450" r="280" fill="none" stroke="url(#logoGradient)" stroke-width="4" />
+    <circle cx="500" cy="450" r="276" fill="none" stroke="#6366F1" stroke-width="1" opacity="0.5" />
+    <circle cx="500" cy="450" r="284" fill="none" stroke="#6366F1" stroke-width="1" opacity="0.3" />
+    
+    <!-- Inner mesh network representing spatial data -->
+    <g opacity="0.8" filter="url(#glow)">
+      <!-- Cell polygons visualization -->
+      <path d="M500,450 L430,390 L390,440 L420,510 L480,520 Z" fill="none" stroke="url(#polygonsGradient)" stroke-width="2" />
+      <path d="M500,450 L550,390 L600,420 L580,490 L530,510 Z" fill="none" stroke="url(#polygonsGradient)" stroke-width="2" />
+      <path d="M500,450 L480,380 L530,340 L580,370 L550,390 Z" fill="none" stroke="url(#polygonsGradient)" stroke-width="2" />
+      <path d="M500,450 L430,390 L450,340 L480,380 Z" fill="none" stroke="url(#polygonsGradient)" stroke-width="2" />
+      <path d="M500,450 L530,510 L460,550 L420,510 Z" fill="none" stroke="url(#polygonsGradient)" stroke-width="2" />
+      
+      <!-- Cell centers and connections -->
+      <circle cx="430" cy="390" r="4" fill="#8B5CF6" />
+      <circle cx="550" cy="390" r="4" fill="#8B5CF6" />
+      <circle cx="480" cy="380" r="4" fill="#8B5CF6" />
+      <circle cx="600" cy="420" r="4" fill="#8B5CF6" />
+      <circle cx="420" cy="510" r="4" fill="#8B5CF6" />
+      <circle cx="530" cy="510" r="4" fill="#8B5CF6" />
+      <circle cx="390" cy="440" r="4" fill="#8B5CF6" />
+      <circle cx="580" cy="490" r="4" fill="#8B5CF6" />
+      <circle cx="480" cy="520" r="4" fill="#8B5CF6" />
+      <circle cx="460" cy="550" r="4" fill="#8B5CF6" />
+      <circle cx="450" cy="340" r="4" fill="#8B5CF6" />
+      <circle cx="530" cy="340" r="4" fill="#8B5CF6" />
+      <circle cx="580" cy="370" r="4" fill="#8B5CF6" />
+      
+      <line x1="430" y1="390" x2="550" y2="390" stroke="#60A5FA" stroke-width="1" opacity="0.5" />
+      <line x1="390" y1="440" x2="600" y2="420" stroke="#60A5FA" stroke-width="1" opacity="0.5" />
+      <line x1="420" y1="510" x2="580" y2="490" stroke="#60A5FA" stroke-width="1" opacity="0.5" />
+      <line x1="480" y1="520" x2="530" y2="510" stroke="#60A5FA" stroke-width="1" opacity="0.5" />
+      <line x1="450" y1="340" x2="530" y2="340" stroke="#60A5FA" stroke-width="1" opacity="0.5" />
+      <line x1="480" y1="380" x2="580" y2="370" stroke="#60A5FA" stroke-width="1" opacity="0.5" />
+    </g>
+    
+    <!-- Central DNA helix representing expression data -->
+    <g opacity="0.9">
+      <path d="M460,400 C480,420 520,420 540,400 S580,380 600,400 M440,420 C460,440 500,440 520,420 S560,400 580,420 M420,440 C440,460 480,460 500,440 S540,420 560,440 M440,460 C460,480 500,480 520,460 S560,440 580,460 M460,480 C480,500 520,500 540,480 S580,460 600,480" stroke="url(#adataGradient)" stroke-width="3" fill="none" />
+      
+      <!-- Gene dots -->
+      <circle cx="460" cy="400" r="3" fill="#F472B6" />
+      <circle cx="540" cy="400" r="3" fill="#F472B6" />
+      <circle cx="600" cy="400" r="3" fill="#F472B6" />
+      <circle cx="440" cy="420" r="3" fill="#F472B6" />
+      <circle cx="520" cy="420" r="3" fill="#F472B6" />
+      <circle cx="580" cy="420" r="3" fill="#F472B6" />
+      <circle cx="420" cy="440" r="3" fill="#F472B6" />
+      <circle cx="500" cy="440" r="3" fill="#F472B6" />
+      <circle cx="560" cy="440" r="3" fill="#F472B6" />
+      <circle cx="440" cy="460" r="3" fill="#F472B6" />
+      <circle cx="520" cy="460" r="3" fill="#F472B6" />
+      <circle cx="580" cy="460" r="3" fill="#F472B6" />
+      <circle cx="460" cy="480" r="3" fill="#F472B6" />
+      <circle cx="540" cy="480" r="3" fill="#F472B6" />
+      <circle cx="600" cy="480" r="3" fill="#F472B6" />
+    </g>
+    
+    <!-- FOV grid representing image data -->
+    <g opacity="0.8">
+      <rect x="430" y="380" width="30" height="30" rx="2" fill="none" stroke="url(#fovGradient)" stroke-width="1.5" />
+      <rect x="470" y="380" width="30" height="30" rx="2" fill="none" stroke="url(#fovGradient)" stroke-width="1.5" />
+      <rect x="510" y="380" width="30" height="30" rx="2" fill="none" stroke="url(#fovGradient)" stroke-width="1.5" />
+      <rect x="550" y="380" width="30" height="30" rx="2" fill="none" stroke="url(#fovGradient)" stroke-width="1.5" />
+      
+      <rect x="430" y="420" width="30" height="30" rx="2" fill="none" stroke="url(#fovGradient)" stroke-width="1.5" />
+      <rect x="470" y="420" width="30" height="30" rx="2" fill="none" stroke="url(#fovGradient)" stroke-width="1.5" />
+      <rect x="510" y="420" width="30" height="30" rx="2" fill="none" stroke="url(#fovGradient)" stroke-width="1.5" />
+      <rect x="550" y="420" width="30" height="30" rx="2" fill="none" stroke="url(#fovGradient)" stroke-width="1.5" />
+      
+      <rect x="430" y="460" width="30" height="30" rx="2" fill="none" stroke="url(#fovGradient)" stroke-width="1.5" />
+      <rect x="470" y="460" width="30" height="30" rx="2" fill="none" stroke="url(#fovGradient)" stroke-width="1.5" />
+      <rect x="510" y="460" width="30" height="30" rx="2" fill="none" stroke="url(#fovGradient)" stroke-width="1.5" />
+      <rect x="550" y="460" width="30" height="30" rx="2" fill="none" stroke="url(#fovGradient)" stroke-width="1.5" />
+      
+      <!-- Image in one FOV -->
+      <rect x="470" y="420" width="30" height="30" rx="2" fill="url(#imagesGradient)" opacity="0.3" />
+      <circle cx="485" cy="435" r="8" fill="none" stroke="#34D399" stroke-width="1" />
+      <circle cx="480" cy="430" r="3" fill="#34D399" />
+      <circle cx="490" cy="440" r="2" fill="#34D399" />
+    </g>
+    
+    <!-- Attributes Circle - Inner Ring -->
+    <g opacity="0.9">
+      <!-- Orbital Ring -->
+      <circle cx="500" cy="450" r="325" fill="none" stroke="#64748B" stroke-width="1" stroke-dasharray="2 3" />
+    </g>
+    
+    <!-- Methods Circle - Outer Ring -->
+    <g opacity="0.9">
+      <!-- Methods Orbital Ring -->
+      <circle cx="500" cy="450" r="400" fill="none" stroke="#64748B" stroke-width="1" stroke-dasharray="2 3" />
+    </g>
+  </g>
+  
+  <!-- Attributes with animation -->
+  <g transform="translate(500, 450)">
+    <!-- Animation for attribute orbit -->
+    <animateTransform
+      attributeName="transform"
+      type="rotate"
+      from="0 0 0"
+      to="360 0 0"
+      dur="240s"
+      repeatCount="indefinite"
+      additive="sum"
+    />
+    
+    <!-- polygons -->
+    <g transform="translate(0, -325)">
+      <circle cx="0" cy="0" r="30" fill="#1E293B" stroke="url(#polygonsGradient)" stroke-width="2" />
+      <text x="0" y="5" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#A78BFA">polygons</text>
+    </g>
+    
+    <!-- gdf_local -->
+    <g transform="rotate(45) translate(0, -325)">
+      <circle cx="0" cy="0" r="30" fill="#1E293B" stroke="url(#gdfGradient)" stroke-width="2" />
+      <text x="0" y="5" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#60A5FA">gdf_local</text>
+    </g>
+    
+    <!-- gdf_global -->
+    <g transform="rotate(90) translate(0, -325)">
+      <circle cx="0" cy="0" r="30" fill="#1E293B" stroke="url(#gdfGradient)" stroke-width="2" />
+      <text x="0" y="5" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#60A5FA">gdf_global</text>
+    </g>
+    
+    <!-- cell_meta -->
+    <g transform="rotate(135) translate(0, -325)">
+      <circle cx="0" cy="0" r="30" fill="#1E293B" stroke="url(#adataGradient)" stroke-width="2" />
+      <text x="0" y="5" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#F472B6">cell_meta</text>
+    </g>
+    
+    <!-- adata -->
+    <g transform="rotate(180) translate(0, -325)">
+      <circle cx="0" cy="0" r="30" fill="#1E293B" stroke="url(#adataGradient)" stroke-width="2" />
+      <text x="0" y="5" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#F472B6">adata</text>
+    </g>
+    
+    <!-- fov_positions -->
+    <g transform="rotate(225) translate(0, -325)">
+      <circle cx="0" cy="0" r="30" fill="#1E293B" stroke="url(#fovGradient)" stroke-width="2" />
+      <text x="0" y="5" font-family="Arial, sans-serif" font-size="11" font-weight="bold" text-anchor="middle" fill="#FBBF24">fov_positions</text>
+    </g>
+    
+    <!-- images -->
+    <g transform="rotate(270) translate(0, -325)">
+      <circle cx="0" cy="0" r="30" fill="#1E293B" stroke="url(#imagesGradient)" stroke-width="2" />
+      <text x="0" y="5" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#34D399">images</text>
+    </g>
+    
+    <!-- custom -->
+    <g transform="rotate(315) translate(0, -325)">
+      <circle cx="0" cy="0" r="30" fill="#1E293B" stroke="#94A3B8" stroke-width="2" />
+      <text x="0" y="5" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#CBD5E1">custom</text>
+    </g>
+  </g>
+  
+  <!-- Methods with animation -->
+  <g transform="translate(500, 450)">
+    <!-- Animation for methods orbit -->
+    <animateTransform
+      attributeName="transform"
+      type="rotate"
+      from="0 0 0"
+      to="-360 0 0"
+      dur="120s"
+      repeatCount="indefinite"
+      additive="sum"
+    />
+    
+    <!-- subset_by_fovs -->
+    <g transform="translate(0, -400)">
+      <rect x="-70" y="-15" width="140" height="30" rx="15" fill="#1E293B" stroke="url(#methodsGradient)" stroke-width="2" />
+      <text x="0" y="5" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#FB7185">subset_by_fovs()</text>
+    </g>
+    
+    <!-- subset_by_cells -->
+    <g transform="rotate(36) translate(0, -400)">
+      <rect x="-70" y="-15" width="140" height="30" rx="15" fill="#1E293B" stroke="url(#methodsGradient)" stroke-width="2" />
+      <text x="0" y="5" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#FB7185">subset_by_cells()</text>
+    </g>
+    
+    <!-- get_geometry_for_cell -->
+    <g transform="rotate(72) translate(0, -400)">
+      <rect x="-70" y="-15" width="140" height="30" rx="15" fill="#1E293B" stroke="url(#gdfGradient)" stroke-width="2" />
+      <text x="0" y="5" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#60A5FA">get_geometry_for_cell()</text>
+    </g>
+    
+    <!-- get_polygon_for_cell -->
+    <g transform="rotate(108) translate(0, -400)">
+      <rect x="-70" y="-15" width="140" height="30" rx="15" fill="#1E293B" stroke="url(#polygonsGradient)" stroke-width="2" />
+      <text x="0" y="5" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#A78BFA">get_polygon_for_cell()</text>
+    </g>
+    
+    <!-- get_cells_in_fov -->
+    <g transform="rotate(144) translate(0, -400)">
+      <rect x="-70" y="-15" width="140" height="30" rx="15" fill="#1E293B" stroke="url(#fovGradient)" stroke-width="2" />
+      <text x="0" y="5" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#FBBF24">get_cells_in_fov()</text>
+    </g>
+    
+    <!-- get_image -->
+    <g transform="rotate(180) translate(0, -400)">
+      <rect x="-70" y="-15" width="140" height="30" rx="15" fill="#1E293B" stroke="url(#imagesGradient)" stroke-width="2" />
+      <text x="0" y="5" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#34D399">get_image()</text>
+    </g>
+    
+    <!-- to_anndata -->
+    <g transform="rotate(216) translate(0, -400)">
+      <rect x="-70" y="-15" width="140" height="30" rx="15" fill="#1E293B" stroke="url(#adataGradient)" stroke-width="2" />
+      <text x="0" y="5" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#F472B6">to_anndata()</text>
+    </g>
+    
+    <!-- to_pickle -->
+    <g transform="rotate(252) translate(0, -400)">
+      <rect x="-70" y="-15" width="140" height="30" rx="15" fill="#1E293B" stroke="#94A3B8" stroke-width="2" />
+      <text x="0" y="5" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#CBD5E1">to_pickle()</text>
+    </g>
+    
+    <!-- from_pickle -->
+    <g transform="rotate(288) translate(0, -400)">
+      <rect x="-70" y="-15" width="140" height="30" rx="15" fill="#1E293B" stroke="#94A3B8" stroke-width="2" />
+      <text x="0" y="5" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#CBD5E1">from_pickle()</text>
+    </g>
+    
+    <!-- from_files -->
+    <g transform="rotate(324) translate(0, -400)">
+      <rect x="-70" y="-15" width="140" height="30" rx="15" fill="#1E293B" stroke="#94A3B8" stroke-width="2" />
+      <text x="0" y="5" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#CBD5E1">from_files()</text>
+    </g>
+  </g>
+  
+  <!-- Main Logo Text - Positioned in lower part of circle -->
+  <text x="500" y="660" font-family="Arial, sans-serif" font-size="50" font-weight="bold" text-anchor="middle" fill="url(#textGradient)" filter="url(#dropShadow)">spatioloji</text>
+</svg>
