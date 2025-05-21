@@ -954,11 +954,37 @@ class spatioloji:
             return None
 
     def get_image(self, fov_id: str) -> Optional[np.ndarray]:
-        """Get the image for a specific FOV."""
+        """
+        Get the image for a specific FOV.
+        
+        Parameters
+        ----------
+        fov_id : str
+            FOV ID to get image for
+        
+        Returns
+        -------
+        numpy.ndarray or None
+            Image array for the specified FOV, or None if the FOV is not found
+        """
         return self.images.get(fov_id)
 
     def summary(self) -> Dict[str, any]:
-        """Get a summary of the object's data."""
+        """
+        Get a summary of the object's data.
+        
+        Returns
+        -------
+        Dict[str, any]
+            Dictionary containing summary information:
+            - n_cells: Number of cells in cell_meta
+            - n_fovs: Number of FOVs in fov_positions
+            - n_polygons: Number of polygon vertices in polygons
+            - n_local_geometries: Number of cell geometries in gdf_local
+            - n_global_geometries: Number of cell geometries in gdf_global
+            - image_fovs: List of FOV IDs with images
+            - adata_shape: Shape of the AnnData object (n_cells, n_genes)
+        """
         return {
             "n_cells": len(self.cell_meta),
             "n_fovs": len(self.fov_positions),
@@ -970,11 +996,33 @@ class spatioloji:
         }
 
     def add_custom(self, key: str, value: any):
-        """Add custom data to the object."""
+        """
+        Add custom data to the object.
+        
+        Parameters
+        ----------
+        key : str
+            Key to store the data under
+        
+        value : any
+            Data to store
+        """
         self.custom[key] = value
 
     def get_custom(self, key: str) -> any:
-        """Retrieve custom data from the object."""
+        """
+        Retrieve custom data from the object.
+        
+        Parameters
+        ----------
+        key : str
+            Key to retrieve data for
+        
+        Returns
+        -------
+        any
+            Data stored under the specified key, or None if the key is not found
+        """
         return self.custom.get(key)
 
     def to_pickle(self, filepath: str):
@@ -989,7 +1037,14 @@ class spatioloji:
             return pickle.load(f)
 
     def to_anndata(self) -> anndata.AnnData:
-        """Get the AnnData object."""
+        """
+        Get the AnnData object.
+        
+        Returns
+        -------
+        anndata.AnnData
+            AnnData object containing gene expression data and other cell-level information
+        """
         return self.adata
         
     @staticmethod

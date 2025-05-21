@@ -13,10 +13,12 @@ from collections import defaultdict
 
 # Neighbor Analysis
 def perform_neighbor_analysis(
-    polygon_file: pd.DataFrame,
-    cell_metadata: pd.DataFrame,
+    spatioloji_obj: 'spatioloji',
     cell_type_column: str,
     distance_threshold: float = 0.0,
+    coordinate_type: str = 'local',
+    fov_id: Optional[Union[str, List[str]]] = None,
+    fov_column: str = 'fov',
     save_dir: str = "./",
     filename_prefix: str = "neighbor_analysis",
     include_plots: bool = True,
@@ -26,19 +28,23 @@ def perform_neighbor_analysis(
     verbose: bool = True
 ) -> Dict:
     """
-    Perform comprehensive neighbor distance analysis for cell polygons.
+    Perform comprehensive neighbor distance analysis for cell polygons using a spatioloji object.
     
     Parameters
     ----------
-    polygon_file : pd.DataFrame
-        DataFrame with cell polygon vertices. Must include 'cell', 'x_local_px', 'y_local_px' columns.
-    cell_metadata : pd.DataFrame
-        DataFrame with cell metadata. Must include 'cell' and cell_type_column.
+    spatioloji_obj : spatioloji
+        A spatioloji object containing cell polygons and metadata.
     cell_type_column : str
-        Column in cell_metadata that defines cell types for analysis.
+        Column in spatioloji_obj.adata.obs that defines cell types for analysis.
     distance_threshold : float, optional
         Maximum distance between polygons to be considered neighbors, by default 0.0
         (0.0 means polygons must be touching, positive values include nearby non-touching cells)
+    coordinate_type : str, optional
+        Type of coordinates to use ('local' or 'global'), by default 'local'
+    fov_id : str or List[str], optional
+        FOV ID or list of FOV IDs to analyze. If None, analyze all FOVs, by default None
+    fov_column : str, optional
+        Column in cell_meta containing FOV IDs, by default 'fov'
     save_dir : str, optional
         Directory to save result files, by default "./"
     filename_prefix : str, optional
@@ -59,68 +65,99 @@ def perform_neighbor_analysis(
     Dict
         Dictionary containing analysis results if return_data is True
     """
-    # Check required columns
-    poly_required_cols = ['cell', 'x_local_px', 'y_local_px']
-    poly_missing_cols = [col for col in poly_required_cols if col not in polygon_file.columns]
-    if poly_missing_cols:
-        raise ValueError(f"Missing required columns in polygon_file: {poly_missing_cols}")
-    
-    meta_required_cols = ['cell', cell_type_column]
-    meta_missing_cols = [col for col in meta_required_cols if col not in cell_metadata.columns]
-    if meta_missing_cols:
-        raise ValueError(f"Missing required columns in cell_metadata: {meta_missing_cols}")
+    import os
+    import numpy as np
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    import networkx as nx
+    from collections import defaultdict
+    from tqdm import tqdm
+    from typing import Optional, Union, List, Dict, Tuple
     
     # Create output directory
     os.makedirs(save_dir, exist_ok=True)
     
-    # Convert polygons to Shapely objects
+    # Check required columns in adata.obs
+    if cell_type_column not in spatioloji_obj.adata.obs.columns:
+        raise ValueError(f"Cell type column '{cell_type_column}' not found in adata.obs")
+    
+    # Handle FOV selection
+    working_obj = spatioloji_obj
+    
+    if fov_id is not None:
+        if verbose:
+            print(f"Subsetting data to specific FOV(s): {fov_id}")
+            
+        # Convert single FOV ID to list
+        if isinstance(fov_id, str):
+            fov_id = [fov_id]
+            
+        # Ensure FOV column exists
+        if fov_column not in spatioloji_obj.cell_meta.columns:
+            raise ValueError(f"FOV column '{fov_column}' not found in cell_meta")
+            
+        # Create subset for specified FOVs
+        working_obj = spatioloji_obj.subset_by_fovs(fov_ids=fov_id, fov_column=fov_column)
+        
+        # Add FOV info to filename
+        if len(fov_id) == 1:
+            filename_prefix = f"{filename_prefix}_fov_{fov_id[0]}"
+        else:
+            filename_prefix = f"{filename_prefix}_fovs_{len(fov_id)}"
+    
+    # Select the appropriate GeoDataFrame based on coordinate type
+    if coordinate_type == 'local':
+        gdf = working_obj.gdf_local
+        if verbose:
+            print("Using local coordinate system for spatial analysis")
+    elif coordinate_type == 'global':
+        gdf = working_obj.gdf_global
+        if verbose:
+            print("Using global coordinate system for spatial analysis")
+    else:
+        raise ValueError(f"Invalid coordinate_type: {coordinate_type}. Must be 'local' or 'global'")
+    
+    # Validate GeoDataFrame
+    if gdf is None or gdf.empty or 'geometry' not in gdf.columns:
+        raise ValueError(f"GeoDataFrame for {coordinate_type} coordinates is not properly initialized")
+    
     if verbose:
-        print("Converting cell polygons to Shapely objects...")
+        print(f"Processing {len(gdf)} cells")
     
-    polygon_set = []
-    cell_ids = []
+    # Get cell polygons
+    cell_ids = gdf['cell'].tolist()
+    polygon_set = gdf['geometry'].tolist()
     
-    for cell, group in tqdm(polygon_file.groupby('cell'), disable=not verbose):
-        try:
-            # Create polygon from vertices
-            coords = group[['x_local_px', 'y_local_px']].values
-            
-            # Skip cells with fewer than 3 vertices
-            if len(coords) < 3:
-                if verbose:
-                    print(f"Warning: Cell {cell} has fewer than 3 vertices. Skipping.")
-                continue
-                
-            # Create Shapely polygon
-            polygon_tmp = sPolygon([(x, y) for x, y in coords])
-            
-            # Skip invalid polygons
-            if not polygon_tmp.is_valid:
-                if verbose:
-                    print(f"Warning: Cell {cell} has an invalid polygon. Skipping.")
-                # Could try to fix: polygon_tmp = polygon_tmp.buffer(0)
-                continue
-                
-            polygon_set.append(polygon_tmp)
-            cell_ids.append(cell)
-        except Exception as e:
-            if verbose:
-                print(f"Error processing cell {cell}: {e}")
-    
-    # Create mapping from cell IDs to their positions in the list
+    # Map cell IDs to indices
     cell_to_index = {cell_id: idx for idx, cell_id in enumerate(cell_ids)}
     
-    # Get cell types
-    cell_meta_dict = dict(zip(cell_metadata['cell'], cell_metadata[cell_type_column]))
+    # Get cell types from adata.obs instead of cell_meta
+    adata = working_obj.adata
+    
+    # Create a mapping between cell IDs and cell types from adata
+    # First, check if 'cell' is a column in adata.obs
+    if 'cell' in adata.obs.columns:
+        # Use the 'cell' column to link adata.obs to gdf
+        cell_to_type_map = dict(zip(adata.obs['cell'], adata.obs[cell_type_column]))
+    else:
+        # Assume the index of adata.obs contains cell IDs
+        cell_to_type_map = dict(zip(adata.obs.index, adata.obs[cell_type_column]))
+    
+    # Get FOV information from cell_meta if available
+    if fov_column in working_obj.cell_meta.columns:
+        fov_dict = dict(zip(working_obj.cell_meta['cell'], working_obj.cell_meta[fov_column]))
+    else:
+        fov_dict = {cell_id: "Unknown" for cell_id in cell_ids}
     
     # Get cell types for each polygon
     cell_types = []
     for cell_id in cell_ids:
-        if cell_id in cell_meta_dict:
-            cell_types.append(cell_meta_dict[cell_id])
+        if cell_id in cell_to_type_map:
+            cell_types.append(cell_to_type_map[cell_id])
         else:
             if verbose:
-                print(f"Warning: Cell {cell_id} not found in metadata. Assigning 'Unknown'.")
+                print(f"Warning: Cell {cell_id} not found in adata.obs. Assigning 'Unknown'.")
             cell_types.append("Unknown")
     
     # Get unique cell types
@@ -158,9 +195,15 @@ def perform_neighbor_analysis(
         'distance': neighbor_distances
     })
     
-    # Add cell types
-    neighbor_df['cell1_type'] = neighbor_df['cell1'].map(cell_meta_dict)
-    neighbor_df['cell2_type'] = neighbor_df['cell2'].map(cell_meta_dict)
+    # Add cell types and FOV information
+    neighbor_df['cell1_type'] = neighbor_df['cell1'].map(cell_to_type_map)
+    neighbor_df['cell2_type'] = neighbor_df['cell2'].map(cell_to_type_map)
+    neighbor_df['cell1_fov'] = neighbor_df['cell1'].map(fov_dict)
+    neighbor_df['cell2_fov'] = neighbor_df['cell2'].map(fov_dict)
+    
+    # Add column for cross-FOV interactions
+    if fov_column in working_obj.cell_meta.columns:
+        neighbor_df['cross_fov'] = neighbor_df['cell1_fov'] != neighbor_df['cell2_fov']
     
     # Save neighbor data
     neighbor_df.to_csv(os.path.join(save_dir, f"{filename_prefix}_pairs.csv"), index=False)
@@ -171,9 +214,11 @@ def perform_neighbor_analysis(
     
     G = nx.Graph()
     
-    # Add nodes with cell type attributes
+    # Add nodes with cell type and FOV attributes
     for i, cell_id in enumerate(cell_ids):
-        G.add_node(cell_id, cell_type=cell_types[i])
+        G.add_node(cell_id, 
+                   cell_type=cell_types[i], 
+                   fov=fov_dict.get(cell_id, "Unknown"))
     
     # Add edges with distance attributes
     for _, row in neighbor_df.iterrows():
@@ -218,11 +263,19 @@ def perform_neighbor_analysis(
     for cell_id in cell_ids:
         neighbors = list(G.neighbors(cell_id))
         neighbor_types = [G.nodes[n]['cell_type'] for n in neighbors]
+        neighbor_fovs = [G.nodes[n]['fov'] for n in neighbors]
         type_counts = {cell_type: neighbor_types.count(cell_type) for cell_type in unique_cell_types}
+        
+        # Count neighbors from same/different FOVs
+        same_fov_neighbors = sum(1 for n_fov in neighbor_fovs if n_fov == G.nodes[cell_id]['fov'])
+        diff_fov_neighbors = len(neighbors) - same_fov_neighbors
         
         cell_stats[cell_id] = {
             'degree': len(neighbors),
             'cell_type': G.nodes[cell_id]['cell_type'],
+            'fov': G.nodes[cell_id]['fov'],
+            'same_fov_neighbors': same_fov_neighbors,
+            'diff_fov_neighbors': diff_fov_neighbors,
             **{f'neighbor_{ct}_count': count for ct, count in type_counts.items()}
         }
     
@@ -270,7 +323,7 @@ def perform_neighbor_analysis(
         # Interaction heatmap
         plt.figure(figsize=figsize)
         sns.heatmap(interaction_df, annot=True, cmap="YlGnBu", fmt=".0f")
-        plt.title("Cell Type Interaction Counts")
+        plt.title(f"Cell Type Interaction Counts ({coordinate_type.capitalize()} Coordinates)")
         plt.tight_layout()
         plt.savefig(os.path.join(save_dir, f"{filename_prefix}_interaction_heatmap.png"), dpi=dpi)
         plt.close()
@@ -278,7 +331,7 @@ def perform_neighbor_analysis(
         # Average distance heatmap
         plt.figure(figsize=figsize)
         sns.heatmap(avg_distance_df, annot=True, cmap="YlGnBu", fmt=".2f")
-        plt.title("Average Distance Between Cell Types")
+        plt.title(f"Average Distance Between Cell Types ({coordinate_type.capitalize()} Coordinates)")
         plt.tight_layout()
         plt.savefig(os.path.join(save_dir, f"{filename_prefix}_distance_heatmap.png"), dpi=dpi)
         plt.close()
@@ -286,7 +339,7 @@ def perform_neighbor_analysis(
         # Enrichment heatmap
         plt.figure(figsize=figsize)
         sns.heatmap(enrichment_df, annot=True, cmap="coolwarm", center=1.0, fmt=".2f")
-        plt.title("Cell Type Interaction Enrichment (Observed/Expected)")
+        plt.title(f"Cell Type Interaction Enrichment ({coordinate_type.capitalize()} Coordinates)")
         plt.tight_layout()
         plt.savefig(os.path.join(save_dir, f"{filename_prefix}_enrichment_heatmap.png"), dpi=dpi)
         plt.close()
@@ -294,11 +347,29 @@ def perform_neighbor_analysis(
         # Degree distribution by cell type
         plt.figure(figsize=figsize)
         sns.boxplot(x=cell_stats_df['cell_type'], y=cell_stats_df['degree'])
-        plt.title("Number of Neighbors by Cell Type")
+        plt.title(f"Number of Neighbors by Cell Type ({coordinate_type.capitalize()} Coordinates)")
         plt.xticks(rotation=45, ha='right')
         plt.tight_layout()
         plt.savefig(os.path.join(save_dir, f"{filename_prefix}_degree_boxplot.png"), dpi=dpi)
         plt.close()
+        
+        # If we have FOV information, plot cross-FOV vs. same-FOV interactions
+        if fov_column in working_obj.cell_meta.columns:
+            # Neighbor counts by FOV type
+            plt.figure(figsize=figsize)
+            cell_stats_melted = pd.melt(
+                cell_stats_df, 
+                id_vars=['cell', 'cell_type', 'fov'],
+                value_vars=['same_fov_neighbors', 'diff_fov_neighbors'],
+                var_name='neighbor_location',
+                value_name='count'
+            )
+            sns.boxplot(x='cell_type', y='count', hue='neighbor_location', data=cell_stats_melted)
+            plt.title(f"Neighbors by Location ({coordinate_type.capitalize()} Coordinates)")
+            plt.xticks(rotation=45, ha='right')
+            plt.tight_layout()
+            plt.savefig(os.path.join(save_dir, f"{filename_prefix}_neighbor_location_boxplot.png"), dpi=dpi)
+            plt.close()
         
         # Network visualization (if fewer than 1000 cells for clarity)
         if len(cell_ids) < 1000:
@@ -313,14 +384,41 @@ def perform_neighbor_analysis(
             
             # Draw nodes and edges
             nx.draw_networkx_nodes(G, pos, node_size=50, node_color=node_colors, alpha=0.8)
-            nx.draw_networkx_edges(G, pos, width=0.5, alpha=0.3)
             
-            # Add a legend
-            for i, ct in enumerate(unique_cell_types):
-                plt.scatter([], [], color=color_map[ct], label=ct)
-            plt.legend()
+            # Color edges differently for cross-FOV interactions if we have FOV info
+            if fov_column in working_obj.cell_meta.columns:
+                same_fov_edges = [(u, v) for u, v in G.edges() if G.nodes[u]['fov'] == G.nodes[v]['fov']]
+                diff_fov_edges = [(u, v) for u, v in G.edges() if G.nodes[u]['fov'] != G.nodes[v]['fov']]
+                
+                # Draw same-FOV edges in light gray
+                nx.draw_networkx_edges(G, pos, edgelist=same_fov_edges, width=0.5, alpha=0.3, edge_color='gray')
+                
+                # Draw cross-FOV edges in red
+                if diff_fov_edges:
+                    nx.draw_networkx_edges(G, pos, edgelist=diff_fov_edges, width=0.8, alpha=0.5, edge_color='red')
+                
+                plt.title(f"Cell Interaction Network ({coordinate_type.capitalize()} Coordinates)\nRed = Cross-FOV Interactions")
+            else:
+                # Draw all edges the same
+                nx.draw_networkx_edges(G, pos, width=0.5, alpha=0.3)
+                plt.title(f"Cell Interaction Network ({coordinate_type.capitalize()} Coordinates)")
             
-            plt.title("Cell Interaction Network")
+            # Add a legend for cell types
+            handles = []
+            labels = []
+            for ct in unique_cell_types:
+                handles.append(plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=color_map[ct], markersize=10))
+                labels.append(ct)
+            
+            # Add legend for edge types if we have FOV info
+            if fov_column in working_obj.cell_meta.columns:
+                handles.append(plt.Line2D([0], [0], color='gray', lw=2, alpha=0.3))
+                labels.append('Same FOV')
+                if diff_fov_edges:
+                    handles.append(plt.Line2D([0], [0], color='red', lw=2, alpha=0.5))
+                    labels.append('Cross FOV')
+                
+            plt.legend(handles, labels, loc='best')
             plt.axis('off')
             plt.tight_layout()
             plt.savefig(os.path.join(save_dir, f"{filename_prefix}_network.png"), dpi=dpi)
@@ -335,11 +433,14 @@ def perform_neighbor_analysis(
             'enrichment_df': enrichment_df,
             'cell_stats_df': cell_stats_df,
             'network': G,
-            'polygons': {cell_ids[i]: polygon_set[i] for i in range(len(cell_ids))}
+            'polygons': {cell_ids[i]: polygon_set[i] for i in range(len(cell_ids))},
+            'coordinate_type': coordinate_type,
+            'fov_id': fov_id,
+            'cell_type_column': cell_type_column
         }
     else:
         return None
-    
+
 def calculate_nearest_neighbor_distances(spatioloji_obj, fov_id=None, use_global_coords=True, use_polygons=False):
     """
     Calculate the nearest neighbor distance for each cell.
