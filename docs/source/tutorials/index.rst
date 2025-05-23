@@ -21,6 +21,5 @@ Advanced Tutorials
    
    GeneSet_Analysis
    Spatial_Stats_Analysis
-   Trajectory_Analysis
    Advanced_Visualization
   

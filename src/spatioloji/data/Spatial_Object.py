@@ -694,6 +694,7 @@ class spatioloji:
                 # Get one row per cell from original data (for non-coordinate columns)
                 cell_info = df_copy.drop([x_col, y_col], axis=1).drop_duplicates('cell')
                 gdf = gdf.merge(cell_info, on='cell')
+                gdf = gdf.set_index('cell').loc[cell_info['cell']].reset_index()
                 
                 return gdf
             else:

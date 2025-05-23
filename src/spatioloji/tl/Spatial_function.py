@@ -552,7 +552,7 @@ def calculate_nearest_neighbor_distances(spatioloji_obj, fov_id=None, use_global
     return pd.DataFrame(nn_distances)
 
 def calculate_cell_density(spatioloji_obj, radius, fov_id=None, use_global_coords=True, 
-                          normalize_by_area=True, use_polygons=False):
+                          normalize_by_area=True, use_polygons=False, n_threads=None):
     """
     Calculate the cell density/crowding for each cell by counting neighbors within a specified radius.
     
@@ -563,12 +563,20 @@ def calculate_cell_density(spatioloji_obj, radius, fov_id=None, use_global_coord
         use_global_coords: Whether to use global coordinates (True) or local coordinates (False)
         normalize_by_area: Whether to normalize count by the search area (True) or return raw counts (False)
         use_polygons: Whether to use polygon boundaries (True) or cell centers (False) for density calculation
+        n_threads: Number of threads to use for parallel processing. If None, uses all available processors.
         
     Returns:
         DataFrame with cell IDs and their density measurements
     """
     import numpy as np
-    from shapely.geometry import Point, Polygon, LineString
+    import pandas as pd
+    from shapely.geometry import Point, Polygon
+    from concurrent.futures import ThreadPoolExecutor
+    import multiprocessing
+    
+    # Determine number of threads if not specified
+    if n_threads is None:
+        n_threads = multiprocessing.cpu_count()
     
     # Determine which coordinates to use
     if use_global_coords:
@@ -597,18 +605,15 @@ def calculate_cell_density(spatioloji_obj, radius, fov_id=None, use_global_coord
     if use_polygons and (spatioloji_obj.polygons is None or len(spatioloji_obj.polygons) == 0):
         raise ValueError("Polygon data not available in the Spatioloji object")
     
-    # Create a list to store results
-    densities = []
-    
     # Calculate the search area (for normalization)
     search_area = np.pi * radius**2 if normalize_by_area else 1
     
-    # If using polygons, create a dictionary of cell polygons
+    # If using polygons, create a dictionary of cell polygons (shared among threads)
+    cell_polygons = {}
+    cell_centers = {}
+    
     if use_polygons:
         # Group polygons by cell
-        cell_polygons = {}
-        cell_centers = {}
-        
         for cell_id in cells['cell'].unique():
             cell_poly_data = spatioloji_obj.get_polygon_for_cell(cell_id)
             
@@ -627,61 +632,75 @@ def calculate_cell_density(spatioloji_obj, radius, fov_id=None, use_global_coord
             except Exception as e:
                 print(f"Warning: Could not create polygon for cell {cell_id}: {e}")
     
-    # For each cell, count the number of cells within the radius
-    for idx, cell in cells.iterrows():
-        cell_id = cell['cell']
+    # Define worker functions for each calculation method
+    def process_cell_with_polygons(cell_id):
+        # Skip if this cell doesn't have polygon data
+        if cell_id not in cell_polygons:
+            return None
+            
+        current_polygon = cell_polygons[cell_id]
+        center_x, center_y = cell_centers[cell_id]
         
-        if use_polygons:
-            # Skip if this cell doesn't have polygon data
-            if cell_id not in cell_polygons:
-                continue
-                
-            current_polygon = cell_polygons[cell_id]
-            center_x, center_y = cell_centers[cell_id]
-            
-            # Create a circular buffer around the cell centroid
-            search_circle = Point(center_x, center_y).buffer(radius)
-            
-            # Count neighboring cells whose polygons intersect with the search circle
-            neighbors_count = 0
-            for other_cell_id, other_polygon in cell_polygons.items():
-                if other_cell_id != cell_id:
-                    if search_circle.intersects(other_polygon):
-                        neighbors_count += 1
-            
-            # Normalize by area if requested
-            density = neighbors_count / search_area if normalize_by_area else neighbors_count
-            
-            densities.append({
-                'cell': cell_id,
-                'density': density,
-                'neighbors_count': neighbors_count
-            })
-        else:
-            # Using cell centers for density calculation
-            cell_x = cell[x_center_col]
-            cell_y = cell[y_center_col]
-            
-            # Calculate distances to all other cells
-            others = cells[cells['cell'] != cell_id]
-            if len(others) == 0:
-                # Skip if there are no other cells
-                continue
-                
-            distances = np.sqrt((others[x_center_col] - cell_x)**2 + (others[y_center_col] - cell_y)**2)
-            neighbors_count = np.sum(distances <= radius)
-            
-            # Normalize by area if requested
-            density = neighbors_count / search_area if normalize_by_area else neighbors_count
-            
-            densities.append({
-                'cell': cell_id,
-                'density': density,
-                'neighbors_count': neighbors_count
-            })
+        # Create a circular buffer around the cell centroid
+        search_circle = Point(center_x, center_y).buffer(radius)
+        
+        # Count neighboring cells whose polygons intersect with the search circle
+        neighbors_count = sum(1 for other_cell_id, other_polygon in cell_polygons.items() 
+                          if other_cell_id != cell_id and search_circle.intersects(other_polygon))
+        
+        # Normalize by area if requested
+        density = neighbors_count / search_area if normalize_by_area else neighbors_count
+        
+        return {
+            'cell': cell_id,
+            'density': density,
+            'neighbors_count': neighbors_count
+        }
     
+    def process_cell_with_centers(cell_id):
+        # Get the cell data
+        cell = cells[cells['cell'] == cell_id].iloc[0]
+        cell_x = cell[x_center_col]
+        cell_y = cell[y_center_col]
+        
+        # Calculate distances to all other cells
+        others = cells[cells['cell'] != cell_id]
+        if len(others) == 0:
+            # Skip if there are no other cells
+            return None
+            
+        distances = np.sqrt((others[x_center_col] - cell_x)**2 + (others[y_center_col] - cell_y)**2)
+        neighbors_count = np.sum(distances <= radius)
+        
+        # Normalize by area if requested
+        density = neighbors_count / search_area if normalize_by_area else neighbors_count
+        
+        return {
+            'cell': cell_id,
+            'density': density,
+            'neighbors_count': neighbors_count
+        }
+    
+    # Get list of all cell IDs to process
+    cell_ids = cells['cell'].unique()
+    
+    # Process cells in parallel
+    densities = []
+    with ThreadPoolExecutor(max_workers=n_threads) as executor:
+        # Choose the appropriate processing function
+        process_func = process_cell_with_polygons if use_polygons else process_cell_with_centers
+        
+        # Submit all tasks and collect results
+        future_to_cell = {executor.submit(process_func, cell_id): cell_id for cell_id in cell_ids}
+        
+        # Gather results as they complete
+        for future in future_to_cell:
+            result = future.result()
+            if result is not None:
+                densities.append(result)
+    
+    # Convert results to DataFrame
     return pd.DataFrame(densities)
-
 
 
 # Spatial Pattern Analysis
@@ -837,6 +856,191 @@ def calculate_ripleys_k(spatioloji_obj, max_distance, num_distances=20, fov_id=N
         result['L_high'] = l_high
     
     return result
+
+def calculate_ripleys_k_by_cell_type(spatioloji_obj, max_distance, cell_type_column, 
+                                     cell_types=None, num_distances=20, fov_id=None, 
+                                     use_global_coords=True, permutations=0, n_jobs=-1):
+    """
+    Calculate Ripley's K function for multiple cell types.
+    
+    Args:
+        spatioloji_obj: A Spatioloji object
+        max_distance: Maximum distance to calculate K function
+        cell_type_column: Column name in spatioloji.adata.obs containing cell type information
+        cell_types: List of cell types to analyze (None = all types)
+        num_distances: Number of distance points to evaluate (default: 20)
+        fov_id: Optional FOV ID to restrict analysis to a specific FOV
+        use_global_coords: Whether to use global coordinates (True) or local coordinates (False)
+        permutations: Number of Monte Carlo simulations for confidence envelope (0 for none)
+        n_jobs: Number of parallel jobs for permutations (-1 for all processors)
+        
+    Returns:
+        Dictionary mapping cell types to DataFrames with K function results
+    """
+    import numpy as np
+    import pandas as pd
+    from scipy.spatial import distance
+    import multiprocessing
+    from joblib import Parallel, delayed
+    
+    # Determine which coordinates to use
+    if use_global_coords:
+        x_col = 'CenterX_global_px'
+        y_col = 'CenterY_global_px'
+    else:
+        x_col = 'CenterX_local_px'
+        y_col = 'CenterY_local_px'
+    
+    # Get the cell metadata to work with
+    if fov_id is not None:
+        cells = spatioloji_obj.get_cells_in_fov(fov_id)
+    else:
+        cells = spatioloji_obj.cell_meta
+    
+    # Check if we have the necessary columns
+    if x_col not in cells.columns or y_col not in cells.columns:
+        raise ValueError(f"Required columns {x_col} and {y_col} not found in cell metadata")
+    
+    # Ensure cell type information is available
+    if cell_type_column not in spatioloji_obj.adata.obs.columns:
+        raise ValueError(f"Cell type column '{cell_type_column}' not found in spatioloji.adata.obs")
+    
+    # Merge cell type information with cell metadata
+    cell_ids = cells.index.tolist()
+    cell_types_series = spatioloji_obj.adata.obs[cell_type_column]
+    cells_with_types = cells.copy()
+    cells_with_types['cell_type'] = [cell_types_series.get(cell_id, None) for cell_id in cell_ids]
+    
+    # Remove cells with missing type information
+    cells_with_types = cells_with_types.dropna(subset=['cell_type'])
+    
+    # Get unique cell types if not specified
+    if cell_types is None:
+        cell_types = cells_with_types['cell_type'].unique().tolist()
+    
+    # Dictionary to store results
+    results = {}
+    
+    # Define the distances at which to evaluate the K function
+    distances = np.linspace(0, max_distance, num_distances)
+    
+    # Calculate area of the study region (use full dataset bounds)
+    all_points = cells_with_types[[x_col, y_col]].values
+    min_x, max_x = np.min(all_points[:, 0]), np.max(all_points[:, 0])
+    min_y, max_y = np.min(all_points[:, 1]), np.max(all_points[:, 1])
+    area = (max_x - min_x) * (max_y - min_y)
+    
+    # Analyze each cell type separately
+    for cell_type in cell_types:
+        # Get coordinates for current cell type
+        type_cells = cells_with_types[cells_with_types['cell_type'] == cell_type]
+        type_points = type_cells[[x_col, y_col]].values
+        n_points = len(type_points)
+        
+        if n_points < 2:
+            print(f"Warning: Skipping type '{cell_type}' with fewer than 2 points")
+            continue
+        
+        # Calculate pairwise distances between all points of this type
+        dist_matrix = distance.pdist(type_points)
+        dist_matrix = distance.squareform(dist_matrix)
+        
+        # Initialize arrays to store K values and L values
+        k_values = np.zeros(len(distances))
+        l_values = np.zeros(len(distances))
+        
+        # Calculate K function for each distance
+        for i, d in enumerate(distances):
+            if d == 0:
+                k_values[i] = 0
+                l_values[i] = 0
+                continue
+            
+            # Count points within distance d of each point
+            points_within_d = (dist_matrix <= d).sum() - n_points  # Subtract n_points to exclude self-counts
+            
+            # Calculate K value: (area/n_points^2) * sum(I(dij <= d))
+            k_values[i] = (area / (n_points * (n_points - 1))) * points_within_d
+            
+            # Calculate L value: sqrt(K/pi) - d
+            l_values[i] = np.sqrt(k_values[i] / np.pi) - d
+        
+        # Create result DataFrame
+        result = pd.DataFrame({
+            'distance': distances,
+            'K': k_values,
+            'L': l_values
+        })
+        
+        # If permutations are requested, calculate confidence envelopes
+        if permutations > 0:
+            # Define a function to calculate K function for a single permutation
+            def calculate_k_for_permutation(seed, n_points, min_x, min_y, max_x, max_y, area, distances):
+                # Set random seed for reproducibility
+                np.random.seed(seed)
+                
+                # Generate random points within the bounding box
+                random_points = np.random.uniform(
+                    low=[min_x, min_y],
+                    high=[max_x, max_y],
+                    size=(n_points, 2)
+                )
+                
+                # Calculate distance matrix for random points
+                random_dist_matrix = distance.pdist(random_points)
+                random_dist_matrix = distance.squareform(random_dist_matrix)
+                
+                # Calculate K and L functions for random pattern
+                random_k = np.zeros(len(distances))
+                random_l = np.zeros(len(distances))
+                
+                for i, d in enumerate(distances):
+                    if d == 0:
+                        continue
+                    
+                    # Count points within distance d of each point
+                    points_within_d = (random_dist_matrix <= d).sum() - n_points
+                    
+                    # Calculate K value
+                    random_k[i] = (area / (n_points * (n_points - 1))) * points_within_d
+                    
+                    # Calculate L value
+                    random_l[i] = np.sqrt(random_k[i] / np.pi) - d
+                
+                return random_k, random_l
+            
+            # Determine number of cores to use
+            if n_jobs == -1:
+                n_jobs = multiprocessing.cpu_count()
+            
+            # Run permutations in parallel
+            permutation_results = Parallel(n_jobs=n_jobs)(
+                delayed(calculate_k_for_permutation)(
+                    p, n_points, min_x, min_y, max_x, max_y, area, distances
+                ) for p in range(permutations)
+            )
+            
+            # Extract K and L values from permutation results
+            random_k_values = np.array([res[0] for res in permutation_results])
+            random_l_values = np.array([res[1] for res in permutation_results])
+            
+            # Calculate confidence envelopes (min and max values across permutations)
+            k_low = np.min(random_k_values, axis=0)
+            k_high = np.max(random_k_values, axis=0)
+            l_low = np.min(random_l_values, axis=0)
+            l_high = np.max(random_l_values, axis=0)
+            
+            # Add confidence envelopes to result
+            result['K_low'] = k_low
+            result['K_high'] = k_high
+            result['L_low'] = l_low
+            result['L_high'] = l_high
+        
+        # Store the result for this cell type
+        results[cell_type] = result
+    
+    return results
+
 
 def calculate_cross_k_function(spatioloji_obj, cell_type_column, cell_type1, cell_type2, 
                               max_distance, num_distances=20, fov_id=None, use_global_coords=True, 
@@ -1535,6 +1739,7 @@ def calculate_j_function(spatioloji_obj, max_distance, num_bins=50, cell_type=No
     
     return result
 
+
 def calculate_g_function(spatioloji_obj, max_distance, num_bins=50, cell_type=None, 
                         reference_cell_type=None, cell_type_column=None, fov_id=None,
                         use_global_coords=True, edge_correction=True, 
@@ -1857,6 +2062,8 @@ def calculate_g_function(spatioloji_obj, max_distance, num_bins=50, cell_type=No
         return result, plot_config
     
     return result
+
+
 
 def calculate_pair_correlation_function(spatioloji_obj, max_distance, num_bins=50, 
                                        cell_type1=None, cell_type2=None, cell_type_column=None,
